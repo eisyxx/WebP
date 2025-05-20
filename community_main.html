@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>머하고놀지?커뮤니티</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body{
+            background-color: #FFF9F3;
+        }
+        #top_header{
+            display: flex;
+            background-color: #FFA974;
+            padding: 20px;
+            margin-bottom: 10px;
+            flex-direction: column;
+        }
+        .btn-outline-secondary:hover {
+            background-color: #FFD384 !important;  /* 원하는 배경색 */
+            color: black !important;               /* 텍스트 색상 */
+            border-color: black !important;      /* 테두리 색상 */
+        }
+        nav .btn {
+            width: 120px;         /* 모든 버튼 너비 동일하게 */
+            text-align: center;   /* 가운데 정렬 */
+        }
+        .badge-custom {
+            background-color: #FFA974;
+            color: black;
+            width: 110px;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .floating-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 70px;
+            height: 70px;
+            background-color: rgba(255, 211, 132, 0.5); /* FFD384 + 50% 투명도 */
+            border: none;
+            border-radius: 50%; /* 동그라미 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            z-index: 1000;
+        }
+        .floating-btn:hover {
+            background-color: rgba(255, 211, 132, 0.8); /* 호버 시 더 진하게 */
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+    <header id="top_header">
+        <hgroup id="title">
+            <h1>Community</h1>
+        </hgroup>
+    </header>
+    <nav>
+        <button type="button" class="btn btn-outline-secondary rounded-pill ms-5">전체</button>
+		<button type="button" class="btn btn-outline-secondary rounded-pill ms-5">자유게시판</button>
+        <button type="button" class="btn btn-outline-secondary rounded-pill ms-5">질문게시판</button>
+        <button type="button" class="btn btn-outline-secondary rounded-pill ms-5">후기</button>
+        <button type="button" class="btn btn-outline-secondary rounded-pill ms-5">나눔/동행</button>
+    </nav>
+    <div class="btn-group mt-4 ms-3">
+        <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown">최근글</button>
+        <div class="dropdown-menu">
+            <a class="dropdown-item" href="#">인기글</a>
+            <a class="dropdown-item" href="#">댓글많은글</a>
+        </div>
+    </div>
+    <section id="post">
+        <article class="p-3">
+            <div class="card mb-4">
+                <div class="card-header">
+                    탐앤탐스<span class="badge badge-custom ms-2 float-end">데이식스 콘서트</span>
+                </div>
+                <div class="card-body">
+                    <h4 class="card-title">데이식스 콘서트 너무 기대돼요!!!</h4>
+                    <p class="card-text">제가 열심히 취켓팅 하다가 어제 표를 드디어 잡았는데요... 드디어 콘서트를 갈 수 있겠네요!! 너무너무 설레요~ 다들 체조경기장에서 봐요 ㅎㅎ</p>
+                </div>
+            </div>
+            <div class="card mb-4">
+                <div class="card-header">
+                    스타벅스<span class="badge badge-custom ms-2 float-end">지킬 앤 하이드</span>
+                </div>
+                <div class="card-body">
+                    <h4 class="card-title">지킬앤하이드 진짜 재밌었다!</h4>
+                    <p class="card-text">홍광호 배우님 노래 잘하신다는 소문은 들었는데 진짜 미친거 아니야?!?! 나 정말 잠깐 다른 세계에 있다가 온 거 같아... 어제 보고 온건데 아직도 못 헤어 나오는 중 ㅜ</p>
+                </div>
+            </div>
+            <div class="card mb-4">
+                <div class="card-header">
+                    더베이크<span class="badge badge-custom ms-2 float-end">서울 재즈 페스티벌</span>
+                </div>
+                <div class="card-body">
+                    <h4 class="card-title">서재페 같이 택시 타고 가실 분?</h4>
+                    <p class="card-text">저는 용산구 쪽에 사는데 올림픽 공원까지 택시 엔빵 하실 분 구합니다!! 사람 많을수록 좋아요~ 댓글 달아주세요</p>
+                </div>
+            </div>
+        </article>
+    </section>
+    <a href="community_write.html" class="floating-btn">
+        <svg width="59" height="59" viewBox="0 0 59 59" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <rect width="59" height="59" fill="url(#pattern0_1_96)"/>
+            <defs>
+            <pattern id="pattern0_1_96" patternContentUnits="objectBoundingBox" width="1" height="1">
+            <use xlink:href="#image0_1_96" transform="scale(0.0104167)"/>
+            </pattern>
+            <image id="image0_1_96" width="96" height="96" preserveAspectRatio="none" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAACXBIWXMAAAsTAAALEwEAmpwYAAACWUlEQVR4nO2cP48NURiHn0pIiE0oNFpqtcQq9Bq2EF+ARql0GqJeFCKKLXwLERE+wn6GjWb9iUJHhrnJxczu3Dln7nvsPE8y3Uzm3ud3/rzz3j8gIiIiIiIiy2wBH4AvwC7wEDj+xxkyGQ+AHx3HO+DkdLeVhtQjf3E0s+LUrzNl7fINoQL5hlCBfEOoQL4hVCDfEDK5XygAq6MMDKECDOEI7QeLJ2bbFsEhPBrzAoRiy1HTwBN+j+oUMBOaLursSUtC1h3C+7nbTx1S1hnCDWZMOkDMOkJoPk+YLWmAoMcTbszKZ5ioKUJQPqstFSVDUD7jNssSISifvJIxJwTlkyc/pzpa9ZojRSokPmcmzJY0gXxDqEC+IVQg3xAqkG8IFcg3hArkN4d1PsoPITny40jKV/4sSY585c+S5MhX/ixJjnzlz5LkyFf+LHHkB6L8QJQfiPIDUX4gyg9E+YEoPxDlB3MMuADcBHaAT2tsOaToN18jG8AL5cczZQgp+s39LzPhs/JjeeU31mK57bITyyW/qxnLWeC7G24ZbgGXR157HrgOvAT2rXbGsQ18zQhhwemBJaql5l+8bsWUCIFDQlB+B3tLgkqEsNHTtlB+B2c6RH0DrmaGsOMvU4ZxpWepyJ0JW478Ydw5YL3OmQkX/U3WMJ4cUrGMnQknXPOH8WZA2VhiT5AePg58eDKEidoJq/TqDaEwmyN6OYZQkLsjm2mGUIinK4rfa9sW220DTzJ52yN6v/2r3ufAPeAacC73ZvIvu20Z+qx9INtsN2YRERERERERERGhn58GJTvfZQTYwgAAAABJRU5ErkJggg=="/>
+            </defs>
+        </svg>
+    </a>
+</body>
+</html>

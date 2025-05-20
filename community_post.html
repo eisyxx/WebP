@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        body{
+            background-color: #FFF9F3;
+        }
+
+        #top_header {
+            display: flex;
+            align-items: center;
+            background-color: #FFA974;
+            padding: 20px;
+            margin-bottom: 10px;
+            position: relative;
+        }
+        /* 아이콘은 왼쪽 */
+        .header-icon {
+            flex: 0 0 auto;
+            width: 50px; height: 50px;
+        }
+        /* 제목은 가운데 */
+        .header-title {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        /* h1 기본 스타일 제거 및 가운데 텍스트 */
+        .header-title h1 {
+            margin: 0;
+            font-size: 24px;
+            text-align: center;
+        }
+
+        .badge-custom {
+            background-color: #FFD384;
+            color: black;
+        }
+
+        #comment-input {
+        background-color: rgba(255, 211, 132, 0.5);
+        border: 1px solid #FFD384;
+        }
+        #comment-input::placeholder {
+        color: #555;
+        }
+        .btn-custom {
+        background-color: #FFD384;
+        color: black;
+        border: 1px solid #FFD384;
+        }
+        .btn-custom:hover {
+        background-color: #ffc766;
+        }
+
+        .comment-card {
+        margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header id="top_header">
+        <div class="header-icon">
+            <a href="community_main.html">
+                <svg width="55" height="47" viewBox="0 0 55 47" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M22.0834 46.1667V29.9167H32.9167V46.1667H46.4584V24.5H54.5834L27.5001 0.125L0.416748 24.5H8.54175V46.1667H22.0834Z" fill="black"/>
+                </svg>                
+            </a>
+        </div>
+        <div class="header-title">
+            <h1 class="text-center">자유게시판</h1>
+        </div>
+    </header>
+
+    <section>
+        <div class="card my-4 p-3">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <span class="badge rounded-pill badge-custom">데이식스 콘서트</span>
+              <small class="text-muted">2025-05-02 14:45:28</small>
+            </div>
+          
+            <h3 class="mb-3">데이식스 콘서트 너무 기대돼요!!!</h3>
+          
+            <div class="d-flex align-items-center mb-3">
+              <a href="#" class="me-2">
+                <!-- 이미지 아이콘 -->
+                <svg width="43" height="43" viewBox="0 0 43 43" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <rect width="43" height="43" fill="url(#pattern0_4_49)"/>
+                    <defs>
+                    <pattern id="pattern0_4_49" patternContentUnits="objectBoundingBox" width="1" height="1">
+                    <use xlink:href="#image0_4_49" transform="scale(0.0104167)"/>
+                    </pattern>
+                    <image id="image0_4_49" width="96" height="96" preserveAspectRatio="none" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAACXBIWXMAAAsTAAALEwEAmpwYAAADRUlEQVR4nO2cu2sUURjFfz6jEsXCR0BQUBRU1EIwQvwDbOyMCoKt2FjYiIiLKVSws/EVFVQEtTCIpfgsVHyBsbCIlaKSBFQwr1WTK1fuwhJW2U1m5ru7c35wmt1N5n7nzNyZuffOgBBCCCGEEELUB8uAQ0A30G7dmDyxFrgC/AJcUD+w2Lphjc58oBMYLTO+XDesG9jIbAM+/sP4cqkrSpjpwKkqjC/vihYl3Yi8Mge4W4P56ooSZDbwYALml/QNeAEcA9Yl2bA8MAW4Ngnzx2sMuANssC6sXtifoPnlKgIHganWBcbMcmAgpQBKug5Msy40Vm6lbH5JV3UkVL7DHc0oABe6I1HGpQzNL50TfJcngJnA14wDcGFMSQBbDcz3GgEWKAE4ahSA1x4FALcNA7isAOCdYQCvFAB8MQygTwHw92RoFYDfdu4pKgBb+g0D6M397g88NwzgqQKA84YBnFUAsMswAE3kA80ZzANU0kDYtgAuGATguz4RWAn8zNB8DUdX4GSGAZyo1IC8MytcFqZt/hOgybrYWGkBPqRo/idgiXWRsbO+yrWgtcoHq4VaVbIQeJRwt+OPLlEDTUDHJO8R/NXOcfX5k6MFOF1jEP6357TyIVmagZ1h/OZZGMksBvWGz84AO3SHK4QQQgghhBBCCCFEbcwDNoZ1Q4XwAPd94CXwPqxsHgnqC5/57+6F3xbC3/r/MVfm/58ZQCtwAOgKU4dpTEd2hW20hm3m+pUEm8KEi9+rBzOYjB+vwbDtjtAW36aGxhe4JYzZfzYw3FVxhPi2tTVaGP4dPoeBnghMdlWqJ7TZz03XLWuAi8BwBIa6CWo4LJtcTR2xNMzH/o7AQJeQ/GsUbgIriPyJ94LxM18uZfnajsR4BeUXU72NwCCXkbpjWuTVbrS+3xnrB7Dd2vx94bVgLqcaA/Zamb8743f8uEg1GoY8MmUVMBRB8S4SDYWHTDLjcQRFu8j0MCvz2yIo1kWqzVkE0BlBoS5S+RvQ1HkTQaEuUr3OIoDvERTqIpV/bXLqWBfpIpcCQAGY74VOR4C9EU5dkL0ZzkA6B6AAzPdCpyPA3ginLsjeDGcgnQNo8ACEEEIIIYQQQgghBHXJHx4f6DZXS92gAAAAAElFTkSuQmCC"/>
+                    </defs>
+                </svg>
+              </a>
+              <h5 class="mb-0">탐앤탐스</h5>
+            </div>
+          
+            <p class="mb-0">
+              제가 열심히 취켓팅 하다가 어제 표를 드디어 잡았는데요...  
+              드디어 콘서트를 갈 수 있겠네요!! 너무너무 설레요~ 다들 체조경기장에서 봐요 ㅎㅎ
+            </p>
+        </div>
+    </section>
+
+    <!-- 댓글 영역 -->
+    <div class="card p-4">
+        <h5 class="mb-3">댓글(<span id="comment-count">0</span>)</h5>
+
+        <!-- 댓글 리스트 -->
+        <div id="comment-list" class="mb-3">
+            <!-- 댓글이 여기에 추가됨 -->
+        </div>
+
+        <!-- 댓글 입력 -->
+        <div class="input-group mb-3">
+            <input type="text" id="comment-input" class="form-control" placeholder="댓글을 입력하세요...">
+            <button class="btn btn-custom" type="button" onclick="addComment()">등록</button>
+        </div>
+    </div>
+
+    <!-- JS 코드 -->
+    <script>
+        let commentCoount=0;
+
+        function addComment() {
+        const input = document.getElementById('comment-input');
+        const text = input.value.trim();
+
+        if (text) {
+            const commentList = document.getElementById('comment-list');
+            const card = document.createElement('div');
+            card.className = 'list-group-item';
+            card.textContent = text;
+
+            commentList.appendChild(card); //댓글 리스트에 추가
+            input.value = ''; //입력창 초기화
+
+            commentCount++; //댓글 수 증가시킴
+            document.getElementById('comment-count').textContent = commentCount;
+        }
+        }
+    </script>
+</body>
+</html>
