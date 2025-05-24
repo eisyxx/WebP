@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>비밀번호 찾기</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: #fff9f3;
+        }
+        .find-pw-bg {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fff9f3;
+        }
+        .find-pw-box {
+            background: #ffffff;
+            border-radius: 30px;
+            box-shadow: 0 0 0 1px #0000004d;
+            padding: 100px 40px 100px 40px;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            margin: 0px auto;
+        }
+        .find-pw-title {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 70px;
+            color: #333333;
+            letter-spacing: -1px;
+        }
+        .find-pw-input {
+            background: #ffd38480;
+            border: none;
+            border-radius: 20px;
+            font-size: 1.08em;
+            padding: 15px 20px;
+            margin-bottom: 20px;
+            color: #000000;
+        }
+        .find-pw-input:focus {
+            outline: none;
+            background: #ffd38480;
+        }
+        .find-pw-input::placeholder {
+            color: #333333;
+            opacity: 1;
+        }
+        .find-pw-btn {
+            width: 30%;
+            background: #ffd384;
+            color: #333333;
+            border: none;
+            border-radius: 20px;
+            font-size: 1.2em;
+            font-weight: bold;
+            padding: 20px;
+            margin-top: 50px;
+            letter-spacing: 1px;
+        }
+        .find-pw-btn:hover {
+            background: #ffda9d;
+        }
+        @media (max-width: 500px) {
+            .find-pw-box {
+                padding: 32px 8vw 28px 8vw;
+                max-width: 98vw;
+            }
+            .find-pw-title {
+                font-size: 1.3em;
+            }
+            .find-pw-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="find-pw-bg">
+        <div class="find-pw-box">
+            <div class="find-pw-title">비밀번호 찾기</div>
+            <form autocomplete="off">
+                <input type="text" class="form-control find-pw-input" placeholder="닉네임을 입력하세요" required>
+                <input type="text" class="form-control find-pw-input" placeholder="아이디를 입력하세요" required>
+                <button type="submit" class="find-pw-btn">완료</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
