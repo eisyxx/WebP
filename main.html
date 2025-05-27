@@ -65,36 +65,34 @@
             position: relative;
             display: inline-block;
             }
-
-            .dropdown-list {
+        .dropdown-list {
             display: none;
             position: absolute;
             left: 0;
             top: 100%;
             min-width: 180px;
-            background: #fff;
-            border-radius: 10px;
+            background: #ffffff;
+            border-radius: 0;
             box-shadow: 0 4px 16px rgba(0,0,0,0.06);
-            margin: 4px 0 0 0;
+            margin: 0 0 0 0;
             padding: 10px 0;
             z-index: 100;
             font-family: 'Noto Sans KR', sans-serif;
+            list-style-type: none;
             }
-
-            .dropdown-list li {
+        .dropdown-list li {
             padding: 10px 20px;
             color: #333;
             cursor: pointer;
             white-space: nowrap;
-            transition: background 0.15s;
+            transition: background 0.5s;
+            list-style-type: none;
             }
-
-            .dropdown-list li:hover {
+        .dropdown-list li:hover {
             background: #e9f2e8;
             color: #2a5732;
             }
-
-            .dropdown:hover .dropdown-list {
+        .dropdown:hover .dropdown-list {
             display: block;
             }
         .login-box {
