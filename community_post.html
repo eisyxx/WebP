@@ -43,23 +43,32 @@
         }
 
         #comment-input {
-        background-color: rgba(255, 211, 132, 0.5);
-        border: 1px solid #FFD384;
+            background-color: rgba(255, 211, 132, 0.5);
+            border: 1px solid #FFD384;
         }
         #comment-input::placeholder {
-        color: #555;
+            color: #555;
         }
         .btn-custom {
-        background-color: #FFD384;
-        color: black;
-        border: 1px solid #FFD384;
+            background-color: #FFD384;
+            color: black;
+            border: 1px solid #FFD384;
         }
         .btn-custom:hover {
-        background-color: #ffc766;
+            background-color: #ffc766;
         }
 
-        .comment-card {
-        margin-bottom: 10px;
+        .comment-box {
+            border: 1px solid #eee;
+            padding: 10px 15px;
+            border-radius: 10px;
+            background-color: #fff8ef;
+            margin-bottom: 10px;
+        }
+        .comment-date {
+            font-size: 0.85rem;
+            color: #777;
+            margin-top: 5px;
         }
     </style>
 </head>
@@ -110,42 +119,47 @@
     </section>
 
     <!-- 댓글 영역 -->
-    <div class="card p-4">
-        <h5 class="mb-3">댓글(<span id="comment-count">0</span>)</h5>
-
-        <!-- 댓글 리스트 -->
-        <div id="comment-list" class="mb-3">
-            <!-- 댓글이 여기에 추가됨 -->
+    <div id="comment-section" class="mt-4 px-3">
+        <h5>댓글 (<span id="comment-count">0</span>)</h5>
+        <div id="comment-list"></div>
+      
+        <div class="input-group mt-3">
+          <input type="text" id="comment-input" class="form-control" placeholder="댓글을 입력하세요...">
+          <button class="btn btn-custom" type="button" onclick="addComment()">등록</button>
         </div>
+      </div>      
 
-        <!-- 댓글 입력 -->
-        <div class="input-group mb-3">
-            <input type="text" id="comment-input" class="form-control" placeholder="댓글을 입력하세요...">
-            <button class="btn btn-custom" type="button" onclick="addComment()">등록</button>
-        </div>
-    </div>
-
-    <!-- JS 코드 -->
-    <script>
-        let commentCoount=0;
-
+      <script>
         function addComment() {
-        const input = document.getElementById('comment-input');
-        const text = input.value.trim();
-
-        if (text) {
-            const commentList = document.getElementById('comment-list');
-            const card = document.createElement('div');
-            card.className = 'list-group-item';
-            card.textContent = text;
-
-            commentList.appendChild(card); //댓글 리스트에 추가
-            input.value = ''; //입력창 초기화
-
-            commentCount++; //댓글 수 증가시킴
-            document.getElementById('comment-count').textContent = commentCount;
+          const input = document.getElementById("comment-input");
+          const commentText = input.value.trim();
+          if (commentText === "") return;
+      
+          // 날짜와 시간 구하기
+          const now = new Date();
+          const timestamp = now.toLocaleString(); // ex: 2025. 5. 21. 오후 3:10:05
+      
+          // 댓글 박스 만들기
+          const commentBox = document.createElement("div");
+          commentBox.className = "comment-box";
+      
+          commentBox.innerHTML = `
+            <strong>익명</strong>
+            <div>${commentText}</div>
+            <div class="comment-date">${timestamp}</div>
+          `;
+      
+          // 댓글 추가
+          document.getElementById("comment-list").appendChild(commentBox);
+      
+          // 입력창 비우기
+          input.value = "";
+      
+          // 댓글 수 증가
+          const count = document.getElementById("comment-count");
+          count.textContent = parseInt(count.textContent) + 1;
         }
-        }
-    </script>
+      </script>
+      
 </body>
 </html>
