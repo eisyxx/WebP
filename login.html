@@ -11,7 +11,7 @@
             background: #fff9f3;
         }
         .container-box {
-            max-width: 500px;
+            max-width: 400px;
             margin: auto;
             background: #fff9f3;
             padding: 110px 0px 50px 0px;
@@ -25,64 +25,73 @@
             margin-bottom: 18px;
         }
         .form-control, .input-group-text {
-            border-radius: 15px;
-            background: #ffffff;
+            border-radius: 10px;
+            background: #ffd38480;
             border: none;
             box-shadow: 0 0 0 0.3px;
         }
         .input-group-text {
-            background: #ffffff;
+            background: #ffd38480;
             border: none;
             font-size: 1.2em;
             padding: 0.5rem 0.75rem;
             display: flex;
             align-items: center;
         }
-        .check-img {
-            width: 28px;
-            height: 28px;
-            object-fit: contain;
-        }
         .form-control {
             padding-top: 0.7rem;
             padding-bottom: 0.7rem;
-            font-size: 1.08em;
+            font-size: 1.00em;
             box-shadow: 0 0 0 0.3px;
+        }
+        .form-control {
+            background: #ffd38480 !important;
+            box-shadow: none !important;
         }
         .not-member {
             margin-top: 50px;
             margin-bottom: 0;
             color: #333333;
-            font-size: 1.2em;
+            font-size: 1.0em;
             font-weight: 500;
+            cursor: pointer;
+        }
+        .not-member:hover {
+            color: #000000;
             text-decoration: underline;
         }
         .join-btn {
-            width: 45%;
+            width: 35%;
             background: #ffd384;
             color: #333333;
             border: none;
-            border-radius: 25px;
-            font-size: 1.5em;
-            padding: 25px 0;
+            border-radius: 15px;
+            font-size: 1.2em;
+            padding: 15px 0;
             margin: 15px 0 10px 0;
             font-weight: bold;
         }
         .find-links-wrapper {
             display: flex;
             justify-content: center;
-            margin-top: 50px;
+            margin-top: 40px;
         }
         .find-links-box {
             background: #ffd38480;
-            padding: 4px 10px;
+            padding: 2px 6px;
+            font-size: 0.9em;
             display: flex;
-            gap: 16px;
+            gap: 5px;
         }
         .find-links a {
             color: #333333;
             text-decoration: none;
-            margin: 0px 4px;
+            margin: 0px 2px;
+            font-size: 0.9em;
+        }
+        .find-links span {
+            font-size: 0.9em;
+            margin: 0 2px;
         }
         .find-links a:hover {
             color: #000000;
@@ -128,7 +137,6 @@
         </div>
     </div>
     <script>
-
         function setCookie(name, value, days) {
             let expires = "";
             if (days) {
