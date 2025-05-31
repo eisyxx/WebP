@@ -10,17 +10,19 @@
             background: #fff9f3;
         }
         .signup-container {
-            max-width: 500px;
-            margin: 110px auto;
+            max-width: 450px;
+            margin: 110px auto 50px auto;
             background: #fff9f3;
+            padding: 0;
+            text-align: center;
             display: flex;
             flex-direction: column;
             justify-content: center;
         }
         .form-group-custom {
             background: #ffd38480;
-            border-radius: 20px;
-            margin-bottom: 20px;
+            border-radius: 10px;
+            margin-bottom: 18px;
             padding: 0;
             display: flex;
             align-items: center;
@@ -31,7 +33,7 @@
             box-shadow: none;
             width: 100%;
             padding: 15px 20px;
-            font-size: 1.1em;
+            font-size: 1em;
             color: #000000;
         }
         .form-control-custom::placeholder {
@@ -47,35 +49,38 @@
             color: #ff0000;
             font-weight: bold;
             margin-left: 20px;
-            font-size: 1.13em;
+            font-size: 1.1em;
         }
         .login-section {
             margin-top: 40px;
             text-align: center;
         }
         .login-section p {
-            font-size: 1.2em;
-            font-weight: 500;
-            margin-bottom: 20px;
-        }
-        .login-btn {
-            background: #ffd384;
-            color: #333333;
-            border: none;
-            border-radius: 25px;
-            font-size: 1.5em;
-            font-weight: bold;
-            padding: 25px 0;
-            width: 45%;
-            margin: 0 auto;
-            display: block;
-        }
-        .login-section p {
+            font-size: 1.0em;
+            font-weight: 400;
             margin-bottom: 20px;
         }
         .login-section p span {
-            font-weight: bold;
+            font-weight: 400;
+            text-decoration: none;
+            cursor: pointer;
+            transition: text-decoration 0.2s;
+        }
+        .login-section p span:hover {
             text-decoration: underline;
+            cursor: pointer;
+        }
+        .login-btn {
+            width: 35%;
+            background: #ffd384;
+            color: #333333;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.2em;
+            padding: 15px 0;
+            margin: 15px auto 10px auto;
+            font-weight: bold;
+            display: block;
         }
         @media (max-width: 600px) {
             .signup-container {
@@ -122,11 +127,17 @@
             <button type="submit" style="display:none" aria-label="회원가입"></button>
         </form>
         <div class="login-section">
-            <p><span>이미 회원이신가요?</span></p>
-            <button class="login-btn" type="button" onclick="window.location.href='login.html'">로그인</button>
+            <p><span id="alreadyMember">이미 회원이신가요?</span></p>
+            <button class="login-btn" type="button" id="signupBtn">회원가입</button>
         </div>
     </div>
     <script>
+        document.getElementById('alreadyMember').addEventListener('click', function() {
+            window.location.href = 'login.html';
+        });
+        document.getElementById('signupBtn').addEventListener('click', function() {
+            document.getElementById('signupForm').requestSubmit();
+        });
         document.getElementById('signupForm').addEventListener('submit', function(e) {
             e.preventDefault();
             const nickname = document.getElementById('nickname').value;
