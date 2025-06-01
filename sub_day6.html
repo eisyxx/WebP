@@ -125,73 +125,85 @@
         }
 
         .side-menu {
-            width: 220px;
+            width: 250px;
             background-color: #A2D5AB;
             padding: 24px;
-            margin: 0 20px 20px 20px;
+            margin: 0 30px 20px 30px;
             box-sizing: border-box;
-            border-radius: 16px;
+            border-radius: 15px;
             border: 1px solid #94c99f;
         }
+
         .menu-title {
             font-size: 1.4rem;
             font-weight: 900;
             margin-bottom: 20px;
             color: #1e3e2e;
         }
+
         .menu-list {
             list-style: none;
             padding: 0;
             margin: 0;
         }
+
         .menu-list li {
-            margin-bottom: 14px;
+            margin-bottom: 30px;
         }
+
         .menu-list li a {
             text-decoration: none;
             color: #ffffff;
             font-size: 1rem;
+            font-weight: 500;
             transition: color 0.2s;
         }
+
         .menu-list li a:hover {
             color: #2a5732;
         }
 
-        #current {
-            background-color: #6f6f6f;
-            color: white;
-            padding: 8px 12px;
-            border-radius: 12px;
-            display: block;
-        }
-
         .community-btn {
             display: block;
-            margin-top: 20px;
-            padding: 12px 16px;
+            margin-top: 50px;
+            padding: 12px 12px;
             background-color: whitesmoke;
             color: black;
             text-align: center;
             text-decoration: none;
             font-size: 1rem;
             font-weight: bold;
-            border-radius: 8px;
+            border-radius: 10px;
             transition: background-color 0.3s;
         }
+
         .community-btn:hover {
             color: whitesmoke;
             background-color: #1e3e2e;
         }
 
         .main-content {
-            flex: 1;
-            padding: 20px;
+            width: 1260px;
+            max-width: 100%;
+            height: 700px;
+            padding: 0 50px 0 50px;
             background-color: #fff;
+            font-size: 20px;
+        }
+        .main-content h5 {
+            font-size: 15px;
+            font-weight: 500;
+        }
+        .main-content img {
+            width: auto;
+            height: 550px;
+            display: block;
+            margin: 0 30px;
         }
 
         .bookmark {
             cursor: pointer;
-            font-size: 1.6rem;
+            font-size: 2rem;
             color: red;
             margin-left: 10px;
         }
@@ -200,46 +212,6 @@
         }
         .bookmark::before {
             content: '\2606'; /* ☆ */
-        }
-
-        .gallery-section {
-            padding: 20px;
-            background-color: #fdfdfd;
-        }
-
-        .gallery-section h2 {
-            text-align: left;
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            color: #2a5732;
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr); /* 가로 3개 */
-            gap: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .gallery-item {
-            background: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-            overflow: hidden;
-            text-align: center;
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        .gallery-item p {
-            margin: 10px 0;
-            color: #666;
-            font-size: 0.95rem;
         }
 
         @media (max-width: 1100px) {
@@ -320,50 +292,27 @@
 
         <div class="content-section">
             <aside class="side-menu">
-                <div class="menu-title">서울 재즈 페스티벌</div>
+                <div class="menu-title">데이식스 콘서트</div>
                 <ul class="menu-list">
-                    <li><a href="sub_map.html">오시는 길</a></li>
-                    <li><a href=# id="current">지난 사진 보기</a></li>
-                    <li><a href="sub_pay.html">예매하기</a></li>
+                    <li><a href="sub_map_szp.html">오시는 길</a></li>
+                    <li><a href="sub_gallery_szp.html">지난 사진 보기</a></li>
+                    <li><a href="sub_pay_szp.html">예매하기</a></li>
                 </ul>
                 <a href="community_main.html" class="community-btn">커뮤니티로 이동</a>
             </aside>
 
             <section class="main-content">
-                <h1>서울 재즈 페스티벌
+                <h1>데이식스 콘서트
                     <span id="bookmark" class="bookmark"></span>
                 </h1>
-
-                <section class="gallery-section">
-                    <h3>📸 지난 사진 보기</h4>
-                    <div class="gallery-grid">
-                        <div class="gallery-item">
-                            <img src="img_szp/gall/szp_1.png" alt="사진1">
-                            <p>2025-05-02</p>
-                        </div>
-                        <div class="gallery-item">
-                            <img src="img_szp/gall/szp_2.png" alt="사진2">
-                            <p>2025-05-02</p>
-                        </div>
-                        <div class="gallery-item">
-                            <img src="img_szp/gall/szp_3.png" alt="사진3">
-                            <p>2025-05-02</p>
-                        </div>
-                        <div class="gallery-item">
-                            <img src="img_szp/gall/szp_4.png" alt="사진4">
-                            <p>2025-05-02</p>
-                        </div>
-                        <div class="gallery-item">
-                            <img src="img_szp/gall/szp_5.png" alt="사진5">
-                            <p>2025-05-02</p>
-                        </div>
-                        <div class="gallery-item">
-                            <img src="img_szp/gall/szp_6.png" alt="사진6">
-                            <p>2025-05-02</p>
-                        </div>
-                    </div>
-                </section>
-                
+                <div style="display: flex; gap: 24px; margin-top: 24px;">
+                <div style="flex:1;">
+                    <img src="img_day6/day6_big.jpg">
+                </div>
+                <div style="flex:1;">
+                    <h5>제17회 서울재즈페스티벌 2025는 5월 30일부터 6월 1일까지 서울 올림픽공원 일대에서 개최됩니다. 국내외 최정상급 아티스트들이 참여해 다채롭고 풍성한 재즈 무대를 선사합니다. 음악 팬들에게 잊지 못할 봄날의 추억을 선물할 대표적인 재즈 축제입니다. 도시가 재즈에 물드는 순간, 서울재즈페스티벌 2025에서 특별한 봄을 경험하세요!</h5>
+                </div>
+                </div>
             </section>
         </div>
     </div>
