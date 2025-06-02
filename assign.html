@@ -132,17 +132,29 @@
         </div>
     </div>
     <script>
-        document.getElementById('alreadyMember').addEventListener('click', function() {
+        document.getElementById('alreadyMember').addEventListener('click', function () {
             window.location.href = 'login.html';
         });
-        document.getElementById('signupBtn').addEventListener('click', function() {
+
+        document.getElementById('signupBtn').addEventListener('click', function () {
             document.getElementById('signupForm').requestSubmit();
         });
-        document.getElementById('signupForm').addEventListener('submit', function(e) {
+
+        document.getElementById('signupForm').addEventListener('submit', function (e) {
             e.preventDefault();
             const nickname = document.getElementById('nickname').value;
-            alert(nickname + "님 등록되었습니다");
+            const inputs = document.querySelectorAll('.form-control-custom');
+            const userId = inputs[4].value;     // 아이디 입력칸
+            const userPw = inputs[5].value;     // 비밀번호 입력칸
+
+            // 로컬스토리지에 아이디와 비밀번호 저장
+            localStorage.setItem('temp_id', userId);
+            localStorage.setItem('temp_pw', userPw);
+
+            alert(`${nickname}님 등록되었습니다`);
+            window.location.href = 'login.html';
         });
     </script>
+
 </body>
 </html>
