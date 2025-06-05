@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>2025년 뭐하고 놀지?</title>
     <link href="https://fonts.googleapis.com/css2?family=Krona+One&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         html, body {
             width: 100vw;
@@ -14,7 +13,7 @@
             background: #fff9f3;
             box-sizing: border-box;
         }
-        
+
         #special {
             font-family: 'Krona One', 'Noto Sans KR', sans-serif;
         }
@@ -126,39 +125,35 @@
         }
 
         .side-menu {
-            width: 220px;
+            width: 250px;
             background-color: #A2D5AB;
             padding: 24px;
-            margin: 0 20px 20px 20px;
+            margin: 0 30px 20px 30px;
             box-sizing: border-box;
-            border-radius: 16px;
+            border-radius: 15px;
             border: 1px solid #94c99f;
         }
-
         .menu-title {
             font-size: 1.4rem;
             font-weight: 900;
             margin-bottom: 20px;
             color: #1e3e2e;
         }
-
         .menu-list {
             list-style: none;
             padding: 0;
             margin: 0;
         }
-
         .menu-list li {
-            margin-bottom: 14px;
+            margin-bottom: 30px;
         }
-
         .menu-list li a {
             text-decoration: none;
             color: #ffffff;
             font-size: 1rem;
+            font-weight: 500;
             transition: color 0.2s;
         }
-
         .menu-list li a:hover {
             color: #2a5732;
         }
@@ -166,70 +161,89 @@
         #current {
             background-color: #6f6f6f;
             color: white;
-            padding: 8px 12px;
-            border-radius: 12px;
+            padding: 10px 10px;
+            border-radius: 10px;
             display: block;
         }
 
         .community-btn {
             display: block;
-            margin-top: 20px;
-            padding: 12px 16px;
+            margin-top: 50px;
+            padding: 12px 12px;
             background-color: whitesmoke;
             color: black;
             text-align: center;
             text-decoration: none;
             font-size: 1rem;
             font-weight: bold;
-            border-radius: 8px;
+            border-radius: 10px;
             transition: background-color 0.3s;
         }
-
         .community-btn:hover {
             color: whitesmoke;
             background-color: #1e3e2e;
         }
 
         .main-content {
-            max-width: 1000px;
-            margin: 50px auto;
-            padding: 20px;
+            width: 1260px;
+            max-width: 100%;
+            height: 700px;
+            flex: 1;
+            padding: 0 50px 0 50px;
+            background-color: #fff;
+            font-size: 20px;
         }
-        .booking-summary {
-            border-right: 1px solid #999;
-            padding-right: 40px;
-        }
-        .booking-summary h1 {
+
+        .bookmark {
+            cursor: pointer;
             font-size: 2rem;
-            font-weight: bold;
-            margin-bottom: 30px;
+            color: red;
+            margin-left: 10px;
         }
-        .booking-info {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
+        .bookmark.fav::before {
+            content: '\2605'; /* ★ */
         }
-        .price {
-            font-size: 1.8rem;
-            font-weight: bold;
+        .bookmark::before {
+            content: '\2606'; /* ☆ */
         }
-        .form-label {
-            font-weight: bold;
-            margin-top: 20px;
-        }
-        .form-control {
-            background-color: #fff8f0;
-        }
-        .form-check-label {
-            font-size: 0.9rem;
-        }
-        .btn-pay {
-            background-color: #ffc66b;
-            border: none;
-            padding: 10px 30px;
-            font-size: 1rem;
-            font-weight: bold;
-            width: 100%;
+
+        .gallery-section {
             margin-top: 30px;
+        }
+
+        .gallery-section h3 {
+            text-align: left;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #2a5732;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 가로 3개 */
+            gap: 20px;
+            max-width: 93%;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 200px;
+            display: block;
+        }
+
+        .gallery-item p {
+            margin: 10px 0;
+            color: #666;
+            font-size: 1.0rem;
         }
 
         @media (max-width: 1100px) {
@@ -312,98 +326,74 @@
             <aside class="side-menu">
                 <div class="menu-title">서울 재즈 페스티벌</div>
                 <ul class="menu-list">
-                    <li><a href="sub_map.html">오시는 길</a></li>
-                    <li><a href="sub_gallery.html">지난 사진 보기</a></li>
-                    <li><a href=# id="current">예매하기</a></li>
+                    <li><a href="sub_map_szp.html">오시는 길</a></li>
+                    <li><a href=# id="current">지난 사진 보기</a></li>
+                    <li><a href="sub_pay_szp.html">예매하기</a></li>
                 </ul>
                 <a href="community_main.html" class="community-btn">커뮤니티로 이동</a>
             </aside>
 
             <section class="main-content">
-                <div class="row">
-                    <!-- 왼쪽 요약 정보 -->
-                    <div class="col-md-5 booking-summary">
-                        <h1>예매하기</h1>
-                        <div class="booking-info">
-                            <p><strong>서울 재즈 페스티벌</strong></p>
-                            <p>2025-05-50 FRI 18:00</p>
-                            <p>올림픽공원</p>
-                            <hr>
-                            <p class="price">120,000원</p>
+                <h1>서울 재즈 페스티벌
+                    <span id="bookmark" class="bookmark"></span>
+                </h1>
+
+                <section class="gallery-section">
+                    <h3>📸 지난 사진 보기</h3>
+                    <div class="gallery-grid">
+                        <div class="gallery-item">
+                            <img src="img_szp/gall/szp_1.png" alt="사진1">
+                            <p>2025-05-02</p>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="img_szp/gall/szp_2.png" alt="사진2">
+                            <p>2025-05-02</p>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="img_szp/gall/szp_3.png" alt="사진3">
+                            <p>2025-05-02</p>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="img_szp/gall/szp_4.png" alt="사진4">
+                            <p>2025-05-02</p>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="img_szp/gall/szp_5.png" alt="사진5">
+                            <p>2025-05-02</p>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="img_szp/gall/szp_6.png" alt="사진6">
+                            <p>2025-05-02</p>
                         </div>
                     </div>
-        
-                    <!-- 오른쪽 결제 폼 -->
-                    <div class="col-md-7">
-                        <form>
-                            <label class="form-label">연락처 정보</label>
-                            <input type="email" class="form-control" placeholder="이메일">
-        
-                            <label class="form-label">결제 방식</label>
-                            <input type="text" class="form-control mb-2" placeholder="1234 1234 1234 1234">
-                            <div class="row g-2">
-                                <div class="col-md-6">
-                                    <input type="text" class="form-control" placeholder="MM/YY">
-                                </div>
-                                <div class="col-md-6">
-                                    <input type="text" class="form-control" placeholder="CVC">
-                                </div>
-                            </div>
-                            <input type="text" class="form-control mt-2" placeholder="이름">
-        
-                            <label class="form-label">청구 주소</label>
-                            <input type="text" class="form-control mb-2" placeholder="우편주소">
-                            <input type="text" class="form-control" placeholder="세부주소">
-        
-                            <label class="form-label mt-4">약관 동의</label>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" checked>
-                                <label class="form-check-label">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox">
-                                <label class="form-check-label">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                </label>
-                            </div>
-        
-                            <button type="submit" class="btn btn-pay">결제하기</button>
-                        </form>
-                    </div>
-                </div>
+                </section>
+                
             </section>
         </div>
     </div>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const form = document.querySelector("form");
-            form.addEventListener("submit", function (event) {
-                // 모든 입력 필드 수집
-                const inputs = form.querySelectorAll("input[type='text'], input[type='email']");
-                for (let input of inputs) {
-                    if (input.value.trim() === "") {
-                        alert("정보를 입력해주십시오");
-                        event.preventDefault(); // 제출 막기
-                        return;
-                    }
-                }
-        
-                // 체크박스 확인
-                const checkboxes = form.querySelectorAll("input[type='checkbox']");
-                for (let checkbox of checkboxes) {
-                    if (!checkbox.checked) {
-                        alert("약관에 동의해주셔야 합니다");
-                        event.preventDefault(); // 제출 막기
-                        return;
-                    }
-                }
-        
-                // 모든 조건 만족 시 폼 제출 허용
-            });
+        const titleId = '서울 재즈 페스티벌'; // 고유 ID 역할
+        const bookmarkEl = document.getElementById('bookmark');
+    
+        let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    
+        if (favorites.includes(titleId)) {
+            bookmarkEl.classList.add('fav');
+        }
+    
+        bookmarkEl.addEventListener('click', () => {
+            const index = favorites.indexOf(titleId);
+            if (index === -1) {
+                favorites.push(titleId);
+                bookmarkEl.classList.add('fav');
+            } else {
+                favorites.splice(index, 1);
+                bookmarkEl.classList.remove('fav');
+            }
+            localStorage.setItem('favorites', JSON.stringify(favorites));
         });
     </script>
+    
 </body>
 </html>

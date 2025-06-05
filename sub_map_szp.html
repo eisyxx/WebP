@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>2025년 뭐하고 놀지?</title>
+    <link href="https://fonts.googleapis.com/css2?family=Krona+One&display=swap" rel="stylesheet">
+    <style>
+        html, body {
+            width: 100vw;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            background: #fff9f3;
+            box-sizing: border-box;
+        }
+        
+        #special {
+            font-family: 'Krona One', sans-serif;
+        }
+
+        body {
+            min-width: 100vw;
+            min-height: 100vh;
+        }
+        .main-wrap {
+            width: 100vw;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: #fff9f3;
+        }
+        .header {
+            width: 100vw;
+            background: #a2d5ab4d;
+            padding: 32px 0 0 0;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            position: relative;
+        }
+        .header-title {
+            font-size: 2.3rem;
+            font-weight: 500;
+            color: #333333;
+            margin-left: 50px;
+            margin-bottom: 20px;
+            line-height: 1;
+        }
+        .nav-bar {
+            display: flex;
+            gap: 15px;
+            margin-left: 50px;
+            margin-bottom: 25px;
+        }
+        .nav-bar button {
+            background: #a2d5ab;
+            border: none;
+            border-radius: 10px;
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #333333;
+            cursor: pointer;
+            box-shadow: none;
+        }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            }
+        .dropdown-list {
+            display: none;
+            position: absolute;
+            left: 0;
+            top: 100%;
+            min-width: 180px;
+            background: #ffffff;
+            border-radius: 0;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+            margin: 0 0 0 0;
+            padding: 10px 0;
+            z-index: 100;
+            font-family: 'Noto Sans KR', sans-serif;
+            list-style-type: none;
+            }
+        .dropdown-list li {
+            padding: 10px 20px;
+            color: #333;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: background 0.5s;
+            list-style-type: none;
+            }
+        .dropdown-list li:hover {
+            background: #e9f2e8;
+            color: #2a5732;
+            }
+        .dropdown:hover .dropdown-list {
+            display: block;
+            }
+        .login-box {
+            position: absolute;
+            top: 30px;
+            right: 38px;
+            color: #333333;
+            font-size: 1rem;
+        }
+        .login-link {
+            color: #333333;
+            text-decoration: none;
+            transition: color 0.15s;
+        }
+        .login-link:hover {
+            color: #000000;
+            text-decoration: underline;
+        }
+
+        .content-section {
+            display: flex;
+            width: 100%;
+            min-height: calc(100vh - 200px); /* 헤더/푸터 높이 감안 */
+            box-sizing: border-box;
+            padding-top: 20px;
+        }
+
+        .side-menu {
+            width: 250px;
+            background-color: #A2D5AB;
+            padding: 24px;
+            margin: 0 30px 20px 30px;
+            box-sizing: border-box;
+            border-radius: 15px;
+            border: 1px solid #94c99f;
+        }
+
+        .menu-title {
+            font-size: 1.4rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            color: #1e3e2e;
+        }
+
+        .menu-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .menu-list li {
+            margin-bottom: 30px;
+        }
+
+        .menu-list li a {
+            text-decoration: none;
+            color: #ffffff;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .menu-list li a:hover {
+            color: #2a5732;
+        }
+
+        #current {
+            background-color: #6f6f6f;
+            color: white;
+            padding: 10px 10px;
+            border-radius: 10px;
+            display: block;
+        }
+
+        .community-btn {
+            display: block;
+            margin-top: 50px;
+            padding: 12px 12px;
+            background-color: whitesmoke;
+            color: black;
+            text-align: center;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .community-btn:hover {
+            color: whitesmoke;
+            background-color: #1e3e2e;
+        }
+
+        .main-content {
+            width: 1260px;
+            max-width: 100%;
+            height: 700px;
+            padding: 0 50px 0 50px;
+            background-color: #fff;
+            font-size: 20px;
+        }
+        .main-content h2 {
+            text-align: left;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .bookmark {
+            cursor: pointer;
+            font-size: 2.0rem;
+            color: red;
+            margin-left: 10px;
+        }
+        .bookmark.fav::before {
+            content: '\2605'; /* ★ */
+        }
+        .bookmark::before {
+            content: '\2606'; /* ☆ */
+        }
+
+        @media (max-width: 1100px) {
+            .grid { gap: 18px; }
+            .header-title, .nav-bar { margin-left: 16px; }
+            .login-box { right: 16px; }
+            .footer { width: 98vw; }
+        }
+        @media (max-width: 900px) {
+            .grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 600px) {
+            .header-title, .nav-bar { margin-left: 8px; }
+            .login-box { right: 8px; }
+            .content { padding: 16px 0 10px 0; }
+            .grid { grid-template-columns: 1fr; gap: 12px; width: 98vw; }
+            .footer { width: 98vw; font-size: 0.95rem;}
+        }
+        @media (max-width: 768px) {
+            .content-section {
+                flex-direction: column;
+            }
+            .side-menu {
+                width: 90%;
+                margin: 16px auto;
+            }
+            .main-content {
+                padding: 16px;
+            }
+        }
+    </style>
+    <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=6dc751f982b51fc643311a88c86d9b34"></script>
+</head>
+<body>
+    <div class="main-wrap">
+        <div class="header">
+            <div class="header-title" id="special">2025년<br>뭐하고 놀지?</div>
+            <div class="nav-bar">
+                <div class="dropdown">
+                <button>페스티벌</button>
+                <ul class="dropdown-list">
+                    <li>서울 재즈 페스티벌</li>
+                    <li>뷰티풀 민트 라이프</li>
+                </ul>
+                </div>
+
+                <div class="dropdown">
+                <button>전시</button>
+                <ul class="dropdown-list">
+                    <li>마르카마르카</li>
+                </ul>
+                </div>
+
+                <div class="dropdown">
+                <button>뮤지컬/연극</button>
+                <ul class="dropdown-list">
+                    <li>지킬앤하이드</li>
+                </ul>
+                </div>
+
+                <div class="dropdown">
+                <button>지역 행사</button>
+                <ul class="dropdown-list">
+                    <li>보령머드축제</li>
+                </ul>
+                </div>
+
+                <div class="dropdown">
+                <button>콘서트</button>
+                <ul class="dropdown-list">
+                    <li>데이식스 콘서트</li>
+                </ul>
+                </div>
+            </div>
+            <div class="login-box">
+                <a href="login.html" class="login-link">로그인</a> | <a href="assign.html" class="login-link">회원가입</a></div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <aside class="side-menu">
+                <div class="menu-title">서울 재즈 페스티벌</div>
+                <ul class="menu-list">
+                    <li><a href=# id="current">오시는 길</a></li>
+                    <li><a href="sub_gallery_szp.html">지난 사진 보기</a></li>
+                    <li><a href="sub_pay_szp.html">예매하기</a></li>
+                </ul>
+                <a href="community_main.html" class="community-btn">커뮤니티로 이동</a>
+            </aside>
+
+            <section class="main-content">
+                <h1>서울 재즈 페스티벌
+                    <span id="bookmark" class="bookmark"></span>
+                </h1>
+                <h2>오시는 길</h2>
+                <div id="map" style="width:100%; height:400px;"></div>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        const titleId = '서울 재즈 페스티벌'; // 고유 ID 역할
+        const bookmarkEl = document.getElementById('bookmark');
+    
+        let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    
+        if (favorites.includes(titleId)) {
+            bookmarkEl.classList.add('fav');
+        }
+    
+        bookmarkEl.addEventListener('click', () => {
+            const index = favorites.indexOf(titleId);
+            if (index === -1) {
+                favorites.push(titleId);
+                bookmarkEl.classList.add('fav');
+            } else {
+                favorites.splice(index, 1);
+                bookmarkEl.classList.remove('fav');
+            }
+            localStorage.setItem('favorites', JSON.stringify(favorites));
+        });
+
+
+        function loadMap() {
+        if (typeof kakao === 'undefined' || !kakao.maps) {
+            setTimeout(loadMap, 300); // 로딩이 안되었으면 다시 시도
+            return;
+        }
+
+        var container = document.getElementById('map');
+        var options = {
+            center: new kakao.maps.LatLng(37.520883, 127.121388),
+            level: 3
+        };
+
+        var map = new kakao.maps.Map(container, options);
+
+        var marker = new kakao.maps.Marker({
+            position: new kakao.maps.LatLng(37.520883, 127.121388),
+            map: map
+        });
+    }
+
+    window.onload = loadMap;
+    </script>
+</body>
+</html>
