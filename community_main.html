@@ -67,11 +67,11 @@
         </hgroup>
     </header>
     <nav>
-        <button type="button" class="btn btn-outline-secondary rounded-pill ms-5">전체</button>
-		<button type="button" class="btn btn-outline-secondary rounded-pill ms-5">자유게시판</button>
-        <button type="button" class="btn btn-outline-secondary rounded-pill ms-5">질문게시판</button>
-        <button type="button" class="btn btn-outline-secondary rounded-pill ms-5">후기</button>
-        <button type="button" class="btn btn-outline-secondary rounded-pill ms-5">나눔/동행</button>
+        <a href="community_main.html" class="btn btn-outline-secondary rounded-pill ms-5">전체</a>
+        <a href="community_main.html?category=자유게시판" class="btn btn-outline-secondary rounded-pill ms-5">자유게시판</a>
+        <a href="community_main.html?category=질문게시판" class="btn btn-outline-secondary rounded-pill ms-5">질문게시판</a>
+        <a href="community_main.html?category=후기" class="btn btn-outline-secondary rounded-pill ms-5">후기</a>
+        <a href="community_main.html?category=나눔/동행" class="btn btn-outline-secondary rounded-pill ms-5">나눔/동행</a>
     </nav>
     <div class="btn-group mt-4 ms-3">
         <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown">최근글</button>
@@ -82,32 +82,32 @@
     </div>
     <section id="post">
         <article class="p-3">
-            <div class="card mb-4">
+            <div class="card mb-4" data-category="자유게시판">
                 <div class="card-header">
                     탐앤탐스<span class="badge badge-custom ms-2 float-end">데이식스 콘서트</span>
                 </div>
-                <a href="community_post.html" class="card-body">
+                <a href="community_post1.html" class="card-body">
                     <h4 class="card-title">데이식스 콘서트 너무 기대돼요!!!</h4>
                     <p class="card-text">제가 열심히 취켓팅 하다가 어제 표를 드디어 잡았는데요... 드디어 콘서트를 갈 수 있겠네요!! 너무너무 설레요~ 다들 체조경기장에서 봐요 ㅎㅎ</p>
                 </a>
             </div>
-            <div class="card mb-4">
+            <div class="card mb-4" data-category="후기">
                 <div class="card-header">
                     스타벅스<span class="badge badge-custom ms-2 float-end">지킬 앤 하이드</span>
                 </div>
-                <div class="card-body">
+                <a href="community_post2.html" class="card-body">
                     <h4 class="card-title">지킬앤하이드 진짜 재밌었다!</h4>
                     <p class="card-text">홍광호 배우님 노래 잘하신다는 소문은 들었는데 진짜 미친거 아니야?!?! 나 정말 잠깐 다른 세계에 있다가 온 거 같아... 어제 보고 온건데 아직도 못 헤어 나오는 중 ㅜ</p>
-                </div>
+                </a>
             </div>
-            <div class="card mb-4">
+            <div class="card mb-4" data-category="나눔/동행">
                 <div class="card-header">
                     더베이크<span class="badge badge-custom ms-2 float-end">서울 재즈 페스티벌</span>
                 </div>
-                <div class="card-body">
+                <a href="community_post3.html" class="card-body">
                     <h4 class="card-title">서재페 같이 택시 타고 가실 분?</h4>
                     <p class="card-text">저는 용산구 쪽에 사는데 올림픽 공원까지 택시 엔빵 하실 분 구합니다!! 사람 많을수록 좋아요~ 댓글 달아주세요</p>
-                </div>
+                </a>
             </div>
         </article>
     </section>
@@ -122,5 +122,48 @@
             </defs>
         </svg>
     </a>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const selected = params.get("category");
+      
+        if (selected) {
+          const posts = document.querySelectorAll('.card[data-category]');
+          posts.forEach(post => {
+            if (post.dataset.category !== selected) {
+              post.style.display = 'none';
+            }
+          });
+        }
+
+        window.addEventListener('DOMContentLoaded', function() {
+            const postArea = document.querySelector('#post article');
+            const params = new URLSearchParams(window.location.search);
+            const filterCategory = params.get('category');
+
+            let posts = JSON.parse(localStorage.getItem('posts') || '[]');
+
+            if (filterCategory) {
+                posts = posts.filter(p => p.category === filterCategory);
+            }
+
+            posts.forEach((post) => {
+                const card = document.createElement('div');
+                card.className = 'card mb-4';
+                card.setAttribute('data-category', post.category);
+                card.innerHTML = `
+                    <div class="card-header">
+                        익명<span class="badge badge-custom ms-2 float-end">${post.head}</span>
+                    </div>
+                    <a href="community_post.html?id=${post.id}" class="card-body">
+                        <h4 class="card-title">${post.title}</h4>
+                        <p class="card-text">${post.post.length > 100 ? post.post.substring(0, 100) + '...' : post.post}</p>
+                    </a>
+                `;
+                // 기존 글 위에 붙이기 (맨 위로)
+                postArea.insertBefore(card, postArea.firstChild);
+            });
+        });
+    </script>      
 </body>
 </html>
