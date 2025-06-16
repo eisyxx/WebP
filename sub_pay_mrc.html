@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>2025년 뭐하고 놀지?</title>
     <link href="https://fonts.googleapis.com/css2?family=Krona+One&display=swap" rel="stylesheet">
+
     <style>
         html, body {
             width: 100vw;
@@ -15,7 +16,7 @@
         }
 
         #special {
-            font-family: 'Krona One', 'Noto Sans KR', sans-serif;
+            font-family: 'Krona One', sans-serif;
         }
 
         body {
@@ -39,6 +40,7 @@
             flex-direction: column;
             align-items: flex-start;
             position: relative;
+            
         }
         .header-title {
             font-size: 2.3rem;
@@ -53,6 +55,7 @@
             gap: 15px;
             margin-left: 50px;
             margin-bottom: 25px;
+            
         }
         .nav-bar button {
             background: #a2d5ab;
@@ -81,7 +84,6 @@
             margin: 0 0 0 0;
             padding: 10px 0;
             z-index: 100;
-            font-family: 'Noto Sans KR', sans-serif;
             list-style-type: none;
             }
         .dropdown-list li {
@@ -163,6 +165,14 @@
             color: #2a5732;
         }
 
+        #current {
+            background-color: #6f6f6f;
+            color: white;
+            padding: 10px 10px;
+            border-radius: 10px;
+            display: block;
+        }
+
         .community-btn {
             display: block;
             margin-top: 50px;
@@ -187,34 +197,48 @@
             max-width: 100%;
             height: 700px;
             padding: 0 50px 0 50px;
-            background-color: #fff;
-            font-size: 20px;
-        }
-        .main-content h5 {
-            font-size: 15px;
-            font-weight: 500;
-        }
-        .main-content img {
-            width: auto;
-            height: 550px;
-            display: block;
-            margin: 0 30px;
+            margin: 50px auto;
         }
 
-        .bookmark {
-            cursor: pointer;
+        .booking-summary {
+            border-right: 1px solid #999;
+            padding-right: 40px;
+
+        }
+        .booking-summary h1 {
             font-size: 2rem;
-            color: red;
-            margin-left: 10px;
+            font-weight: bold;
+            margin-bottom: 30px;
         }
-        .bookmark.fav::before {
-            content: '\2605'; /* ★ */
+        .booking-info {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
         }
-        .bookmark::before {
-            content: '\2606'; /* ☆ */
+        .price {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+        .form-label {
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        .form-control {
+            background-color: #fff8f0;
+        }
+        .form-check-label {
+            font-size: 0.9rem;
+        }
+        .btn-pay {
+            background-color: #ffc66b;
+            border: none;
+            padding: 10px 30px;
+            font-size: 1rem;
+            font-weight: bold;
+            width: 100%;
+            margin-top: 30px;
         }
 
-        @media (max-width: 1100px) {
+        @media (max-width: 1000px) {
             .grid { gap: 18px; }
             .header-title, .nav-bar { margin-left: 16px; }
             .login-box { right: 16px; }
@@ -292,53 +316,19 @@
 
         <div class="content-section">
             <aside class="side-menu">
-                <div class="menu-title">데이식스 콘서트</div>
+                <div class="menu-title">마르카마르카</div>
                 <ul class="menu-list">
-                    <li><a href="sub_map_day6.html">오시는 길</a></li>
-                    <li><a href="sub_gallery_day6.html">지난 사진 보기</a></li>
-                    <li><a href="sub_pay_szp.html">예매하기</a></li>
+                    <li><a href="sub_map_mrc.html">오시는 길</a></li>
+                    <li><a href="sub_gallery_mrc.html">지난 사진 보기</a></li>
+                    <li><a href=# id="current">예매하기</a></li>
                 </ul>
                 <a href="community_main.html" class="community-btn">커뮤니티로 이동</a>
             </aside>
-
             <section class="main-content">
-                <h1>데이식스 콘서트
-                    <span id="bookmark" class="bookmark"></span>
-                </h1>
-                <div style="display: flex; gap: 24px; margin-top: 24px;">
-                <div style="flex:1;">
-                    <img src="img_day6/day6_big.jpg">
-                </div>
-                <div style="flex:1;">
-                    <h5>제17회 서울재즈페스티벌 2025는 5월 30일부터 6월 1일까지 서울 올림픽공원 일대에서 개최됩니다. 국내외 최정상급 아티스트들이 참여해 다채롭고 풍성한 재즈 무대를 선사합니다. 음악 팬들에게 잊지 못할 봄날의 추억을 선물할 대표적인 재즈 축제입니다. 도시가 재즈에 물드는 순간, 서울재즈페스티벌 2025에서 특별한 봄을 경험하세요!</h5>
-                </div>
-                </div>
+                <iframe src="bt_mrc.html" style="width:100%; height:700px; border:none;"></iframe>
             </section>
         </div>
     </div>
 
-    <script>
-        const titleId = '서울 재즈 페스티벌'; // 고유 ID 역할
-        const bookmarkEl = document.getElementById('bookmark');
-    
-        let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-    
-        if (favorites.includes(titleId)) {
-            bookmarkEl.classList.add('fav');
-        }
-    
-        bookmarkEl.addEventListener('click', () => {
-            const index = favorites.indexOf(titleId);
-            if (index === -1) {
-                favorites.push(titleId);
-                bookmarkEl.classList.add('fav');
-            } else {
-                favorites.splice(index, 1);
-                bookmarkEl.classList.remove('fav');
-            }
-            localStorage.setItem('favorites', JSON.stringify(favorites));
-        });
-    </script>
-    
 </body>
 </html>

@@ -361,17 +361,17 @@
 
         <div class="content-section">
             <aside class="side-menu">
-                <div class="menu-title">서울 재즈 페스티벌</div>
+                <div class="menu-title">데이식스 콘서트</div>
                 <ul class="menu-list">
                     <li><a href=# id="current">오시는 길</a></li>
-                    <li><a href="sub_gallery_szp.html">지난 사진 보기</a></li>
-                    <li><a href="sub_pay_szp.html">예매하기</a></li>
+                    <li><a href="sub_gallery_day6.html">지난 사진 보기</a></li>
+                    <li><a href="sub_pay_day6.html">예매하기</a></li>
                 </ul>
                 <a href="community_main.html" class="community-btn">커뮤니티로 이동</a>
             </aside>
 
             <section class="main-content">
-                <h1>서울 재즈 페스티벌
+                <h1>데이식스 콘서트
                     <span id="bookmark" class="bookmark"></span>
                 </h1>
                 <h2>오시는 길</h2>
@@ -403,11 +403,8 @@
                             </svg>
                             <h3>버스</h3>
                         </div>
-                        <p>동1문 지하철 5/9호선 올림픽공원역: 3214, 3220, 3319, 3323</p>
-                        <p>올림픽공원 테니스장: 3220, 3319</p>
-                        <p>올림픽공원 장미광장: 3412, 3413, 3323, 30-5, 35</p>
-                        <p>남2문 밸로드론 입구: 3412, 3414, 3323, 30, 30-5, 35</p>
-                        <p>올림픽회관: 3318, 3319, 3411, 4318</p>
+                        <p>초록색(지선): 3216, 3412, 3413, 3414</p>
+                        <p>경기버스 30, 30-5</p>
                     </div>
                     <div class="transport-option">
                         <div class="icon-with-title">
@@ -416,9 +413,8 @@
                             </svg>
                             <h3>자가용</h3>
                         </div>
-                        <p>유료 주차장 이용 가능하나, 당일 혼잡이 예상되오니 가급적 대중교통 이용을 권장합니다.</br>
-                            <a href="https://www.ksponco.or.kr/olympicpark/parkingInfo?mid=a20111000000" target="_blank">[주차 안내 바로가기]
-                        </a></p>
+                        <p>주차장 P5 (06:00~22:00), 181대 주차가능</p>
+                        <p>소형 10분당 600원, 대형 10분당 1,200원</p>
                     </div>
                 </article>
             </section>
@@ -456,14 +452,14 @@
 
         var container = document.getElementById('map');
         var options = {
-            center: new kakao.maps.LatLng(37.520883, 127.121388),
+            center: new kakao.maps.LatLng(37.519865, 127.127064),
             level: 3
         };
 
         var map = new kakao.maps.Map(container, options);
 
         var marker = new kakao.maps.Marker({
-            position: new kakao.maps.LatLng(37.520883, 127.121388),
+            position: new kakao.maps.LatLng(37.519208, 127.127320),
             map: map
         });
     }

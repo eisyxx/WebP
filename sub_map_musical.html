@@ -361,17 +361,17 @@
 
         <div class="content-section">
             <aside class="side-menu">
-                <div class="menu-title">서울 재즈 페스티벌</div>
+                <div class="menu-title">지킬 앤 하이드</div>
                 <ul class="menu-list">
                     <li><a href=# id="current">오시는 길</a></li>
-                    <li><a href="sub_gallery_szp.html">지난 사진 보기</a></li>
-                    <li><a href="sub_pay_szp.html">예매하기</a></li>
+                    <li><a href="sub_gallery_musical.html">지난 사진 보기</a></li>
+                    <li><a href="sub_pay_musical.html">예매하기</a></li>
                 </ul>
                 <a href="community_main.html" class="community-btn">커뮤니티로 이동</a>
             </aside>
 
             <section class="main-content">
-                <h1>서울 재즈 페스티벌
+                <h1>지킬 앤 하이드
                     <span id="bookmark" class="bookmark"></span>
                 </h1>
                 <h2>오시는 길</h2>
@@ -392,9 +392,8 @@
                             </svg>
                             <h3>지하철</h3>
                         </div>
-                        <p>5호선 올림픽공원역 3/4번 출구</p>
-                        <p>8호선 몽촌토성역 1번 출구</p>
-                        <p>9호선 올림픽공원역 3/4번 출구, 한성백제역 2번 출구</p>
+                        <p>부산 2호선 국제금융센터.부산은행역 3번 출구 (도보 3분)</p>
+                        <p>부산 1호선 범내골역 4번 출구 (도보 9분)</p>
                     </div>
                     <div class="transport-option">
                         <div class="icon-with-title">
@@ -403,11 +402,8 @@
                             </svg>
                             <h3>버스</h3>
                         </div>
-                        <p>동1문 지하철 5/9호선 올림픽공원역: 3214, 3220, 3319, 3323</p>
-                        <p>올림픽공원 테니스장: 3220, 3319</p>
-                        <p>올림픽공원 장미광장: 3412, 3413, 3323, 30-5, 35</p>
-                        <p>남2문 밸로드론 입구: 3412, 3414, 3323, 30, 30-5, 35</p>
-                        <p>올림픽회관: 3318, 3319, 3411, 4318</p>
+                        <p>문전교차로: 24, 138-1, 583</p>
+                        <p>상공회의소/지오플레이스: 5-1, 10, 29, 43, 82, 111, 급행 1000</p>
                     </div>
                     <div class="transport-option">
                         <div class="icon-with-title">
@@ -416,8 +412,8 @@
                             </svg>
                             <h3>자가용</h3>
                         </div>
-                        <p>유료 주차장 이용 가능하나, 당일 혼잡이 예상되오니 가급적 대중교통 이용을 권장합니다.</br>
-                            <a href="https://www.ksponco.or.kr/olympicpark/parkingInfo?mid=a20111000000" target="_blank">[주차 안내 바로가기]
+                        <p>회전교차로 기준 왼쪽편 주차장 이용. 사전 차량 등록이 가능하며, 등록된 차량에 한해 5시간 무료 주차가 가능합니다(등록위치 : 공연장 1층 로비 내 주차정산소)</br>
+                            <a href="https://www.dreamtheatre.co.kr/Dream/DreamTheatre/Location" target="_blank">[주차 안내 바로가기]
                         </a></p>
                     </div>
                 </article>
@@ -456,14 +452,14 @@
 
         var container = document.getElementById('map');
         var options = {
-            center: new kakao.maps.LatLng(37.520883, 127.121388),
+            center: new kakao.maps.LatLng(35.148627, 129.065322),
             level: 3
         };
 
         var map = new kakao.maps.Map(container, options);
 
         var marker = new kakao.maps.Marker({
-            position: new kakao.maps.LatLng(37.520883, 127.121388),
+            position: new kakao.maps.LatLng(35.148627, 129.065322),
             map: map
         });
     }

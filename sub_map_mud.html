@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>2025년 뭐하고 놀지?</title>
     <link href="https://fonts.googleapis.com/css2?family=Krona+One&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         html, body {
             width: 100vw;
@@ -361,17 +362,17 @@
 
         <div class="content-section">
             <aside class="side-menu">
-                <div class="menu-title">서울 재즈 페스티벌</div>
+                <div class="menu-title">보령 머드 축제</div>
                 <ul class="menu-list">
                     <li><a href=# id="current">오시는 길</a></li>
-                    <li><a href="sub_gallery_szp.html">지난 사진 보기</a></li>
-                    <li><a href="sub_pay_szp.html">예매하기</a></li>
+                    <li><a href="sub_gallery_mud.html">지난 사진 보기</a></li>
+                    <li><a href="sub_pay_mud.html">예매하기</a></li>
                 </ul>
                 <a href="community_main.html" class="community-btn">커뮤니티로 이동</a>
             </aside>
 
             <section class="main-content">
-                <h1>서울 재즈 페스티벌
+                <h1>보령 머드 축제
                     <span id="bookmark" class="bookmark"></span>
                 </h1>
                 <h2>오시는 길</h2>
@@ -392,9 +393,7 @@
                             </svg>
                             <h3>지하철</h3>
                         </div>
-                        <p>5호선 올림픽공원역 3/4번 출구</p>
-                        <p>8호선 몽촌토성역 1번 출구</p>
-                        <p>9호선 올림픽공원역 3/4번 출구, 한성백제역 2번 출구</p>
+                        <p>근처에 지하철 역이 없으므로 가급적 자가용 이용 부탁드립니다.</p>
                     </div>
                     <div class="transport-option">
                         <div class="icon-with-title">
@@ -403,11 +402,9 @@
                             </svg>
                             <h3>버스</h3>
                         </div>
-                        <p>동1문 지하철 5/9호선 올림픽공원역: 3214, 3220, 3319, 3323</p>
-                        <p>올림픽공원 테니스장: 3220, 3319</p>
-                        <p>올림픽공원 장미광장: 3412, 3413, 3323, 30-5, 35</p>
-                        <p>남2문 밸로드론 입구: 3412, 3414, 3323, 30, 30-5, 35</p>
-                        <p>올림픽회관: 3318, 3319, 3411, 4318</p>
+                        <p>대천5동행정복지센터: 101, 102, 103</p>
+                        <p>만남의광장: 100, 101, 102-1</p>
+                        <p class="text-danger">배차간격이 매우 깁니다. 주의하세요.</p>
                     </div>
                     <div class="transport-option">
                         <div class="icon-with-title">
@@ -416,8 +413,8 @@
                             </svg>
                             <h3>자가용</h3>
                         </div>
-                        <p>유료 주차장 이용 가능하나, 당일 혼잡이 예상되오니 가급적 대중교통 이용을 권장합니다.</br>
-                            <a href="https://www.ksponco.or.kr/olympicpark/parkingInfo?mid=a20111000000" target="_blank">[주차 안내 바로가기]
+                        <p>메인행사장 주변에 총 9개의 주차장이 마련되어 있습니다.</br>
+                            <a href="https://mudfestival.or.kr/festival/contents/view?contentsNo=37&level=2&menuNo=33" target="_blank">[주차 안내 바로가기]
                         </a></p>
                     </div>
                 </article>
@@ -449,26 +446,25 @@
 
 
         function loadMap() {
-        if (typeof kakao === 'undefined' || !kakao.maps) {
-            setTimeout(loadMap, 300); // 로딩이 안되었으면 다시 시도
-            return;
+            if (typeof kakao === 'undefined' || !kakao.maps) {
+                setTimeout(loadMap, 300); // 로딩이 안되었으면 다시 시도
+                return;
+            }
+
+            var container = document.getElementById('map');
+            var options = {
+                center: new kakao.maps.LatLng(36.315246, 126.514441),
+                level: 3
+            };
+
+            var map = new kakao.maps.Map(container, options);
+
+            var marker = new kakao.maps.Marker({
+                position: new kakao.maps.LatLng(36.315246, 126.514441),
+                map: map
+            });
         }
-
-        var container = document.getElementById('map');
-        var options = {
-            center: new kakao.maps.LatLng(37.520883, 127.121388),
-            level: 3
-        };
-
-        var map = new kakao.maps.Map(container, options);
-
-        var marker = new kakao.maps.Marker({
-            position: new kakao.maps.LatLng(37.520883, 127.121388),
-            map: map
-        });
-    }
-
-    window.onload = loadMap;
+        window.onload = loadMap;
     </script>
 </body>
 </html>
