@@ -71,18 +71,18 @@
       </a>
     </div>
     <div class="header-title">
-      <h1 class="text-center" id="board-title">게시판</h1>
+      <h1 class="text-center">자유게시판</h1>
     </div>
   </header>
 
   <main class="container my-4">
     <div class="card p-4">
       <div class="d-flex justify-content-between align-items-center mb-2">
-        <span class="badge rounded-pill badge-custom" id="post-head">글머리</span>
-        <small class="text-muted" id="post-date">날짜</small>
+        <span class="badge rounded-pill badge-custom" id="post-head">데이식스 콘서트</span>
+        <small class="text-muted" id="post-date">2025-06-19 08:32:43</small>
       </div>
 
-      <h3 id="post-title">제목</h3>
+      <h3 id="post-title">데이식스 콘서트 너무 기대돼요!!!</h3>
 
       <div class="d-flex align-items-center mb-3">
         <a href="#" class="me-2">
@@ -97,10 +97,11 @@
                 </defs>
             </svg>
         </a>
-        <strong>익명</strong>
+        <strong>탐앤탐스</strong>
       </div>
 
-      <p class="mb-0" id="post-body">본문 내용</p>
+      <p class="mb-0" id="post-body">제가 열심히 취켓팅 하다가 어제 표를 드디어 잡았는데요...  
+        드디어 콘서트를 갈 수 있겠네요!! 너무너무 설레요~ 다들 체조경기장에서 봐요 ㅎㅎ</p>
     </div>
 
     <!-- 댓글 영역 -->
@@ -116,22 +117,6 @@
   </main>
 
   <script>
-    const params = new URLSearchParams(window.location.search);
-    const postId = Number(params.get('id'));
-
-    const posts = JSON.parse(localStorage.getItem('posts') || '[]');
-    const post = posts.find(p => p.id === postId);
-
-    if (!post) {
-      document.querySelector('.card').innerHTML = '<p class="text-danger">❌ 해당 글을 찾을 수 없습니다.</p>';
-    } else {
-      document.getElementById('post-head').textContent = post.head;
-      document.getElementById('post-date').textContent = new Date(post.date).toLocaleString();
-      document.getElementById('post-title').textContent = post.title;
-      document.getElementById('post-body').textContent = post.post;
-      document.getElementById('board-title').textContent = post.category;
-    }
-
     function addComment() {
       const input = document.getElementById("comment-input");
       const commentText = input.value.trim();

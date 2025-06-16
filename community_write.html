@@ -86,5 +86,36 @@
             <button type="submit" class="btn btn-submit">등록</button>
         </div>
     </form>
+
+    <script>
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+        
+            const category = document.getElementById('category').value;
+            const head = document.getElementById('head').value;
+            const title = document.getElementById('title').value;
+            const post = document.getElementById('post').value;
+            const date = new Date().toISOString(); // 날짜 저장
+            const id=Date.now();
+
+            // 제목과 내용 입력 안 했을 때 경고
+            if (!title.trim() || !post.trim()) {
+                alert('제목과 내용을 모두 입력해 주세요.');
+                return;
+            }
+
+            // 글 객체
+            const newPost = { id, category, head, title, post, date };
+        
+            // 기존 글 목록 가져오기
+            let posts = JSON.parse(localStorage.getItem('posts') || '[]');
+            posts.unshift(newPost); // 새 글을 앞에 추가
+            localStorage.setItem('posts', JSON.stringify(posts));
+        
+            // community_main.html로 이동
+            window.location.href = `community_main.html?category=${category}`;
+        });
+    </script>
+        
 </body>
 </html>
