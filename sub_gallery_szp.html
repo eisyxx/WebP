@@ -395,15 +395,16 @@
     </div>
 
     <script>
-        const titleId = '서울 재즈 페스티벌'; // 고유 ID 역할
+        const titleId = '서울 재즈 페스티벌'
         const bookmarkEl = document.getElementById('bookmark');
-    
-        let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-    
+        const userId = localStorage.getItem('currentUser');
+        const favKey = `favorites_${userId}`;
+        let favorites = JSON.parse(localStorage.getItem(favKey)) || [];
+
         if (favorites.includes(titleId)) {
             bookmarkEl.classList.add('fav');
         }
-    
+
         bookmarkEl.addEventListener('click', () => {
             const index = favorites.indexOf(titleId);
             if (index === -1) {
@@ -413,8 +414,28 @@
                 favorites.splice(index, 1);
                 bookmarkEl.classList.remove('fav');
             }
-            localStorage.setItem('favorites', JSON.stringify(favorites));
+            localStorage.setItem(favKey, JSON.stringify(favorites));
         });
+
+        function checkLoginStatus() {
+            const currentUser = localStorage.getItem('currentUser');
+            const loginLink = document.getElementById('loginLink');
+            const signupLink = document.getElementById('signupLink');
+            const loginSeparator = document.getElementById('loginSeparator');
+            const mypageLink = document.getElementById('mypageLink');
+            if (currentUser) {
+                loginLink.style.display = 'none';
+                signupLink.style.display = 'none';
+                loginSeparator.style.display = 'none';
+                mypageLink.style.display = 'inline';
+            } else {
+                loginLink.style.display = 'inline';
+                signupLink.style.display = 'inline';
+                loginSeparator.style.display = 'inline';
+                mypageLink.style.display = 'none';
+            }
+        }
+        window.addEventListener('load', checkLoginStatus);
     </script>
     
 </body>
