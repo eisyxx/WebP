@@ -380,7 +380,7 @@
                     <li><a href="sub_gallery_mrc.html">지난 사진 보기</a></li>
                     <li><a href="sub_pay_mrc.html">예매하기</a></li>
                 </ul>
-                <a href="community_main.html" class="community-btn">커뮤니티로 이동</a>
+                <a href="#" class="community-btn" onclick="checkLoginForCommunity()">커뮤니티로 이동</a>
             </aside>
 
             <section class="main-content">
@@ -497,7 +497,17 @@
         });
     }
 
-    window.onload = loadMap;
+        window.onload = loadMap;
+
+        function checkLoginForCommunity() {
+            const currentUser = localStorage.getItem('currentUser');
+            if (!currentUser) {
+                alert('로그인 시 이용가능한 서비스입니다.');
+                return false;
+            } else {
+                window.location.href = 'community_main.html';
+            }
+        }
     </script>
 </body>
 </html>
