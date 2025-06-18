@@ -96,9 +96,13 @@
             background: #e9f2e8;
             color: #2a5732;
             }
+        .dropdown-list li a {
+            text-decoration: none;
+            color: #333;
+        }
         .dropdown:hover .dropdown-list {
             display: block;
-            }
+        }
         .login-box {
             position: absolute;
             top: 30px;
@@ -115,7 +119,16 @@
             color: #000000;
             text-decoration: underline;
         }
-
+        .mypage-link {
+            color: #333333;
+            text-decoration: none;
+            transition: color 0.15s;
+            display: none;
+        }
+        .mypage-link:hover {
+            color: #000000;
+            text-decoration: underline;
+        }
         .content-section {
             display: flex;
             width: 100%;
@@ -133,35 +146,32 @@
             border-radius: 15px;
             border: 1px solid #94c99f;
         }
-
         .menu-title {
             font-size: 1.4rem;
             font-weight: 900;
             margin-bottom: 20px;
             color: #1e3e2e;
         }
-
         .menu-list {
             list-style: none;
             padding: 0;
             margin: 0;
         }
-
         .menu-list li {
             margin-bottom: 30px;
         }
-
         .menu-list li a {
             text-decoration: none;
             color: #ffffff;
             font-size: 1rem;
             font-weight: 500;
             transition: color 0.2s;
+            padding: 10px;
         }
-
         .menu-list li a:hover {
             color: #2a5732;
         }
+
 
         #current {
             background-color: #6f6f6f;
@@ -191,19 +201,19 @@
         }
 
         .main-content {
-            flex: 1 1 760px;
-            max-width: 960px;
-            padding: 32px;
+            flex: 1 1 1000px;
+            max-width: 100%;
+            padding: 0 50px 0 50px;
             background-color: #ffffff;
             font-size: 20px;
-            border-radius: 15px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
             overflow-wrap: break-word;
         }
-        .main-content h2 {
+        .main-content h3 {
             text-align: left;
             font-size: 1.5rem;
             margin-bottom: 20px;
+            color: #2a5732;
         }
 
         .bookmark {
@@ -224,18 +234,18 @@
             justify-content: space-between;
             align-items: flex-start;
             margin-top: 40px;
+            margin-bottom: 40px;
             flex-wrap: wrap;
-            gap: 24px;
+            gap: 20px;
         }
 
         .transport-option {
             flex: 1 1 30%;
-            padding: 20px;
+            padding: 30px;
             background: #f8f8f8;
-            border-radius: 12px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            border-radius: 15px;
             max-width: 360px;
-            min-height: 360px;
+            min-height: 330px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -245,7 +255,7 @@
         .icon-with-title {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             margin-bottom: 16px;
         }
 
@@ -255,14 +265,14 @@
             flex-shrink: 0;
         }
 
-        .icon-with-title h3 {
+        .icon-with-title h4 {
             margin: 0;
             font-size: 1.2rem;
         }
 
         .transport-option p {
             margin: 6px 0;
-            font-size: 0.95rem;
+            font-size: 1.0rem;
             line-height: 1.4;
             word-break: keep-all;
             text-align: left;
@@ -325,41 +335,40 @@
                 <div class="dropdown">
                 <button>페스티벌</button>
                 <ul class="dropdown-list">
-                    <li>서울 재즈 페스티벌</li>
-                    <li>뷰티풀 민트 라이프</li>
+                    <li><a href="sub_szp.html">서울 재즈 페스티벌</a></li>
+                    <li>뷰리풀 민트 라이프</li>
                 </ul>
                 </div>
-
                 <div class="dropdown">
                 <button>전시</button>
                 <ul class="dropdown-list">
-                    <li>마르카마르카</li>
+                    <li><a href="sub_mrc.html">마르카마르카</a></li>
                 </ul>
                 </div>
-
                 <div class="dropdown">
                 <button>뮤지컬/연극</button>
                 <ul class="dropdown-list">
-                    <li>지킬앤하이드</li>
+                    <li><a href="sub_musical.html">지킬 앤 하이드</a></li>
                 </ul>
                 </div>
-
                 <div class="dropdown">
                 <button>지역 행사</button>
                 <ul class="dropdown-list">
-                    <li>보령머드축제</li>
+                    <li><a href="sub_mud.html">보령 머드 축제</a></li>
                 </ul>
                 </div>
-
                 <div class="dropdown">
                 <button>콘서트</button>
                 <ul class="dropdown-list">
-                    <li>데이식스 콘서트</li>
+                    <li><a href="sub_day6.html">데이식스 콘서트</a></li>
                 </ul>
                 </div>
             </div>
             <div class="login-box">
-                <a href="login.html" class="login-link">로그인</a> | <a href="assign.html" class="login-link">회원가입</a></div>
+                <a href="login.html" class="login-link" id="loginLink">로그인</a>
+                <span class="login-link" id="loginSeparator">|</span>
+                <a href="assign.html" class="login-link" id="signupLink">회원가입</a>
+                <a href="mypage.html" class="mypage-link" id="mypageLink">마이페이지</a>
             </div>
         </div>
 
@@ -378,7 +387,7 @@
                 <h1>데이식스 콘서트
                     <span id="bookmark" class="bookmark"></span>
                 </h1>
-                <h2>오시는 길</h2>
+                <h3>📍오시는 길</h3>
                 <div id="map" style="width:100%; height:400px;"></div>
 
                 <article class="transport-options">
@@ -394,31 +403,35 @@
                                 </clipPath>
                                 </defs>
                             </svg>
-                            <h3>지하철</h3>
+                            <h4>지하철</h4>
                         </div>
-                        <p>5호선 올림픽공원역 3/4번 출구</p>
-                        <p>8호선 몽촌토성역 1번 출구</p>
-                        <p>9호선 올림픽공원역 3/4번 출구, 한성백제역 2번 출구</p>
+                        <p>[5호선] 올림픽공원역 3/4번 출구</p>
+                        <p>[8호선] 몽촌토성역 1번 출구</p>
+                        <p>[9호선] 올림픽공원역 3/4번 출구, 한성백제역 2번 출구</p>
                     </div>
                     <div class="transport-option">
                         <div class="icon-with-title">
                             <svg width="40" height="48" viewBox="0 0 40 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M0 35.3684C0 37.5916 0.975 39.5874 2.5 40.9768V45.4737C2.5 46.8632 3.625 48 5 48H7.5C8.875 48 10 46.8632 10 45.4737V42.9474H30V45.4737C30 46.8632 31.125 48 32.5 48H35C36.375 48 37.5 46.8632 37.5 45.4737V40.9768C39.025 39.5874 40 37.5916 40 35.3684V10.1053C40 1.26316 31.05 0 20 0C8.95 0 0 1.26316 0 10.1053V35.3684ZM8.75 37.8947C6.675 37.8947 5 36.2021 5 34.1053C5 32.0084 6.675 30.3158 8.75 30.3158C10.825 30.3158 12.5 32.0084 12.5 34.1053C12.5 36.2021 10.825 37.8947 8.75 37.8947ZM31.25 37.8947C29.175 37.8947 27.5 36.2021 27.5 34.1053C27.5 32.0084 29.175 30.3158 31.25 30.3158C33.325 30.3158 35 32.0084 35 34.1053C35 36.2021 33.325 37.8947 31.25 37.8947ZM35 22.7368H5V10.1053H35V22.7368Z" fill="black"/>
                             </svg>
-                            <h3>버스</h3>
+                            <h4>버스</h4>
                         </div>
-                        <p>초록색(지선): 3216, 3412, 3413, 3414</p>
-                        <p>경기버스 30, 30-5</p>
+                        <p>[초록색(지선)] 3216, 3412, 3413, 3414</p>
+                        <p>[경기버스] 30, 30-5</p>
                     </div>
                     <div class="transport-option">
                         <div class="icon-with-title">
                             <svg width="42" height="49" viewBox="0 0 42 49" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M37.1467 3.09313C36.68 1.28625 35.3733 0 33.8333 0H8.16667C6.62667 0 5.34333 1.28625 4.85333 3.09313L0 21.4375V45.9375C0 47.6219 1.05 49 2.33333 49H4.66667C5.95 49 7 47.6219 7 45.9375V42.875H35V45.9375C35 47.6219 36.05 49 37.3333 49H39.6667C40.95 49 42 47.6219 42 45.9375V21.4375L37.1467 3.09313ZM8.16667 33.6875C6.23 33.6875 4.66667 31.6356 4.66667 29.0938C4.66667 26.5519 6.23 24.5 8.16667 24.5C10.1033 24.5 11.6667 26.5519 11.6667 29.0938C11.6667 31.6356 10.1033 33.6875 8.16667 33.6875ZM33.8333 33.6875C31.8967 33.6875 30.3333 31.6356 30.3333 29.0938C30.3333 26.5519 31.8967 24.5 33.8333 24.5C35.77 24.5 37.3333 26.5519 37.3333 29.0938C37.3333 31.6356 35.77 33.6875 33.8333 33.6875ZM4.66667 18.375L8.16667 4.59375H33.8333L37.3333 18.375H4.66667Z" fill="black"/>
                             </svg>
-                            <h3>자가용</h3>
+                            <h4>자가용</h4>
                         </div>
-                        <p>주차장 P5 (06:00~22:00), 181대 주차가능</p>
-                        <p>소형 10분당 600원, 대형 10분당 1,200원</p>
+                        <p>[주차장 P5]</p>
+                        <p>- 운영시간: 06:00~22:00</p>
+                        <p>- 주다 가능 대수: 181대</p>
+                        <p>[주차 요금]</p>
+                        <p>- 소형: 10분당 600원</p>
+                        <p>- 대형: 10분당 1,200원</p>
                     </div>
                 </article>
             </section>
@@ -426,15 +439,16 @@
     </div>
 
     <script>
-        const titleId = '서울 재즈 페스티벌'; // 고유 ID 역할
+        const titleId = '데이식스 콘서트'
         const bookmarkEl = document.getElementById('bookmark');
-    
-        let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-    
+        const userId = localStorage.getItem('currentUser');
+        const favKey = `favorites_${userId}`;
+        let favorites = JSON.parse(localStorage.getItem(favKey)) || [];
+
         if (favorites.includes(titleId)) {
             bookmarkEl.classList.add('fav');
         }
-    
+
         bookmarkEl.addEventListener('click', () => {
             const index = favorites.indexOf(titleId);
             if (index === -1) {
@@ -444,9 +458,27 @@
                 favorites.splice(index, 1);
                 bookmarkEl.classList.remove('fav');
             }
-            localStorage.setItem('favorites', JSON.stringify(favorites));
+            localStorage.setItem(favKey, JSON.stringify(favorites));
         });
-
+        function checkLoginStatus() {
+            const currentUser = localStorage.getItem('currentUser');
+            const loginLink = document.getElementById('loginLink');
+            const signupLink = document.getElementById('signupLink');
+            const loginSeparator = document.getElementById('loginSeparator');
+            const mypageLink = document.getElementById('mypageLink');
+            if (currentUser) {
+                loginLink.style.display = 'none';
+                signupLink.style.display = 'none';
+                loginSeparator.style.display = 'none';
+                mypageLink.style.display = 'inline';
+            } else {
+                loginLink.style.display = 'inline';
+                signupLink.style.display = 'inline';
+                loginSeparator.style.display = 'inline';
+                mypageLink.style.display = 'none';
+            }
+        }
+        window.addEventListener('load', checkLoginStatus);
 
         function loadMap() {
         if (typeof kakao === 'undefined' || !kakao.maps) {
@@ -456,7 +488,7 @@
 
         var container = document.getElementById('map');
         var options = {
-            center: new kakao.maps.LatLng(37.519865, 127.127064),
+            center: new kakao.maps.LatLng(37.519865, 127.127320),
             level: 3
         };
 
