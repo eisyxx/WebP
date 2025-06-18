@@ -146,24 +146,20 @@
             border-radius: 15px;
             border: 1px solid #94c99f;
         }
-
         .menu-title {
             font-size: 1.4rem;
             font-weight: 900;
             margin-bottom: 20px;
             color: #1e3e2e;
         }
-
         .menu-list {
             list-style: none;
             padding: 0;
             margin: 0;
         }
-
         .menu-list li {
             margin-bottom: 30px;
         }
-
         .menu-list li a {
             text-decoration: none;
             color: #ffffff;
@@ -172,10 +168,10 @@
             transition: color 0.2s;
             padding: 10px;
         }
-
         .menu-list li a:hover {
             color: #2a5732;
         }
+
 
         #current {
             background-color: #6f6f6f;
@@ -205,12 +201,11 @@
         }
 
         .main-content {
-            flex: 1 1 760px;
-            max-width: 960px;
+            flex: 1 1 1000px;
+            max-width: 100%;
             padding: 0 50px 0 50px;
             background-color: #ffffff;
             font-size: 20px;
-            border-radius: 15px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
             overflow-wrap: break-word;
         }
@@ -239,18 +234,18 @@
             justify-content: space-between;
             align-items: flex-start;
             margin-top: 40px;
+            margin-bottom: 40px;
             flex-wrap: wrap;
-            gap: 24px;
+            gap: 20px;
         }
 
         .transport-option {
             flex: 1 1 30%;
-            padding: 20px;
+            padding: 30px;
             background: #f8f8f8;
-            border-radius: 12px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            border-radius: 15px;
             max-width: 360px;
-            min-height: 360px;
+            min-height: 355px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -260,7 +255,7 @@
         .icon-with-title {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             margin-bottom: 16px;
         }
 
@@ -270,22 +265,24 @@
             flex-shrink: 0;
         }
 
-        .icon-with-title h3 {
+        .icon-with-title h4 {
             margin: 0;
             font-size: 1.2rem;
         }
 
         .transport-option p {
             margin: 6px 0;
-            font-size: 0.95rem;
+            font-size: 1.0rem;
             line-height: 1.4;
             word-break: keep-all;
             text-align: left;
             width: 100%;
         }
-
+        .text-danger {
+            color: rgb(192, 2, 2);
+        }
         .transport-option a {
-            font-size: 0.9rem;
+            font-size: 1.0rem;
             color: #1e3e2e;
             text-decoration: underline;
             display: inline-block;
@@ -408,33 +405,33 @@
                                 </clipPath>
                                 </defs>
                             </svg>
-                            <h3>지하철</h3>
+                            <h4>지하철</h4>
                         </div>
-                        <p>5호선 올림픽공원역 3/4번 출구</p>
-                        <p>8호선 몽촌토성역 1번 출구</p>
-                        <p>9호선 올림픽공원역 3/4번 출구, 한성백제역 2번 출구</p>
+                        <p>[5호선] 올림픽공원역 3/4번 출구</p>
+                        <p>[8호선] 몽촌토성역 1번 출구</p>
+                        <p>[9호선] 올림픽공원역 3/4번 출구, 한성백제역 2번 출구</p>
                     </div>
                     <div class="transport-option">
                         <div class="icon-with-title">
                             <svg width="40" height="48" viewBox="0 0 40 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M0 35.3684C0 37.5916 0.975 39.5874 2.5 40.9768V45.4737C2.5 46.8632 3.625 48 5 48H7.5C8.875 48 10 46.8632 10 45.4737V42.9474H30V45.4737C30 46.8632 31.125 48 32.5 48H35C36.375 48 37.5 46.8632 37.5 45.4737V40.9768C39.025 39.5874 40 37.5916 40 35.3684V10.1053C40 1.26316 31.05 0 20 0C8.95 0 0 1.26316 0 10.1053V35.3684ZM8.75 37.8947C6.675 37.8947 5 36.2021 5 34.1053C5 32.0084 6.675 30.3158 8.75 30.3158C10.825 30.3158 12.5 32.0084 12.5 34.1053C12.5 36.2021 10.825 37.8947 8.75 37.8947ZM31.25 37.8947C29.175 37.8947 27.5 36.2021 27.5 34.1053C27.5 32.0084 29.175 30.3158 31.25 30.3158C33.325 30.3158 35 32.0084 35 34.1053C35 36.2021 33.325 37.8947 31.25 37.8947ZM35 22.7368H5V10.1053H35V22.7368Z" fill="black"/>
                             </svg>
-                            <h3>버스</h3>
+                            <h4>버스</h4>
                         </div>
-                        <p>동1문 지하철 5/9호선 올림픽공원역: 3214, 3220, 3319, 3323</p>
-                        <p>올림픽공원 테니스장: 3220, 3319</p>
-                        <p>올림픽공원 장미광장: 3412, 3413, 3323, 30-5, 35</p>
-                        <p>남2문 밸로드론 입구: 3412, 3414, 3323, 30, 30-5, 35</p>
-                        <p>올림픽회관: 3318, 3319, 3411, 4318</p>
+                        <p>[동1문 지하철 5/9호선 올림픽공원역] 3214, 3220, 3319, 3323</p>
+                        <p>[올림픽공원 테니스장] 3220, 3319</p>
+                        <p>[올림픽공원 장미광장] 3412, 3413, 3323, 30-5, 35</p>
+                        <p>[남2문 밸로드론 입구] 3412, 3414, 3323, 30, 30-5, 35</p>
+                        <p>[올림픽회관] 3318, 3319, 3411, 4318</p>
                     </div>
                     <div class="transport-option">
                         <div class="icon-with-title">
                             <svg width="42" height="49" viewBox="0 0 42 49" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M37.1467 3.09313C36.68 1.28625 35.3733 0 33.8333 0H8.16667C6.62667 0 5.34333 1.28625 4.85333 3.09313L0 21.4375V45.9375C0 47.6219 1.05 49 2.33333 49H4.66667C5.95 49 7 47.6219 7 45.9375V42.875H35V45.9375C35 47.6219 36.05 49 37.3333 49H39.6667C40.95 49 42 47.6219 42 45.9375V21.4375L37.1467 3.09313ZM8.16667 33.6875C6.23 33.6875 4.66667 31.6356 4.66667 29.0938C4.66667 26.5519 6.23 24.5 8.16667 24.5C10.1033 24.5 11.6667 26.5519 11.6667 29.0938C11.6667 31.6356 10.1033 33.6875 8.16667 33.6875ZM33.8333 33.6875C31.8967 33.6875 30.3333 31.6356 30.3333 29.0938C30.3333 26.5519 31.8967 24.5 33.8333 24.5C35.77 24.5 37.3333 26.5519 37.3333 29.0938C37.3333 31.6356 35.77 33.6875 33.8333 33.6875ZM4.66667 18.375L8.16667 4.59375H33.8333L37.3333 18.375H4.66667Z" fill="black"/>
                             </svg>
-                            <h3>자가용</h3>
+                            <h4>자가용</h4>
                         </div>
-                        <p>유료 주차장 이용 가능하나, 당일 혼잡이 예상되오니 가급적 대중교통 이용을 권장합니다.</br>
+                        <p>- 유료 주차장 이용 가능하나, 당일 혼잡이 예상되오니 가급적 대중교통 이용을 권장합니다.</br>
                             <a href="https://www.ksponco.or.kr/olympicpark/parkingInfo?mid=a20111000000" target="_blank">[주차 안내 바로가기]
                         </a></p>
                     </div>

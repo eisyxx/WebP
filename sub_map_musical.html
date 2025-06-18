@@ -146,24 +146,20 @@
             border-radius: 15px;
             border: 1px solid #94c99f;
         }
-
         .menu-title {
             font-size: 1.4rem;
             font-weight: 900;
             margin-bottom: 20px;
             color: #1e3e2e;
         }
-
         .menu-list {
             list-style: none;
             padding: 0;
             margin: 0;
         }
-
         .menu-list li {
             margin-bottom: 30px;
         }
-
         .menu-list li a {
             text-decoration: none;
             color: #ffffff;
@@ -172,10 +168,10 @@
             transition: color 0.2s;
             padding: 10px;
         }
-
         .menu-list li a:hover {
             color: #2a5732;
         }
+
 
         #current {
             background-color: #6f6f6f;
@@ -205,12 +201,11 @@
         }
 
         .main-content {
-            flex: 1 1 760px;
-            max-width: 960px;
+            flex: 1 1 1000px;
+            max-width: 100%;
             padding: 0 50px 0 50px;
             background-color: #ffffff;
             font-size: 20px;
-            border-radius: 15px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
             overflow-wrap: break-word;
         }
@@ -239,18 +234,18 @@
             justify-content: space-between;
             align-items: flex-start;
             margin-top: 40px;
+            margin-bottom: 40px;
             flex-wrap: wrap;
-            gap: 24px;
+            gap: 20px;
         }
 
         .transport-option {
             flex: 1 1 30%;
-            padding: 20px;
+            padding: 30px;
             background: #f8f8f8;
-            border-radius: 12px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            border-radius: 15px;
             max-width: 360px;
-            min-height: 360px;
+            min-height: 330px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -260,7 +255,7 @@
         .icon-with-title {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             margin-bottom: 16px;
         }
 
@@ -270,22 +265,24 @@
             flex-shrink: 0;
         }
 
-        .icon-with-title h3 {
+        .icon-with-title h4 {
             margin: 0;
             font-size: 1.2rem;
         }
 
         .transport-option p {
             margin: 6px 0;
-            font-size: 0.95rem;
+            font-size: 1.0rem;
             line-height: 1.4;
             word-break: keep-all;
             text-align: left;
             width: 100%;
         }
-
+        .text-danger {
+            color: rgb(192, 2, 2);
+        }
         .transport-option a {
-            font-size: 0.9rem;
+            font-size: 1.0rem;
             color: #1e3e2e;
             text-decoration: underline;
             display: inline-block;
@@ -408,10 +405,10 @@
                                 </clipPath>
                                 </defs>
                             </svg>
-                            <h3>지하철</h3>
+                            <h4>지하철</h4>
                         </div>
-                        <p>부산 2호선 국제금융센터.부산은행역 3번 출구 (도보 3분)</p>
-                        <p>부산 1호선 범내골역 4번 출구 (도보 9분)</p>
+                        <p>[부산 2호선] 국제금융센터.부산은행역 3번 출구 (도보 3분)</p>
+                        <p>[부산 1호선] 범내골역 4번 출구 (도보 9분)</p>
                     </div>
                     <div class="transport-option">
                         <div class="icon-with-title">
@@ -420,8 +417,8 @@
                             </svg>
                             <h3>버스</h3>
                         </div>
-                        <p>문전교차로: 24, 138-1, 583</p>
-                        <p>상공회의소/지오플레이스: 5-1, 10, 29, 43, 82, 111, 급행 1000</p>
+                        <p>[문전교차로] 24, 138-1, 583</p>
+                        <p>[상공회의소/지오플레이스] 5-1, 10, 29, 43, 82, 111, 급행 1000</p>
                     </div>
                     <div class="transport-option">
                         <div class="icon-with-title">
@@ -430,7 +427,9 @@
                             </svg>
                             <h3>자가용</h3>
                         </div>
-                        <p>회전교차로 기준 왼쪽편 주차장 이용. 사전 차량 등록이 가능하며, 등록된 차량에 한해 5시간 무료 주차가 가능합니다(등록위치 : 공연장 1층 로비 내 주차정산소)</br>
+                        <p>- 회전교차로 기준 왼쪽편 주차장 이용</p>
+                        <p>- 사전 차량 등록이 가능하며, 등록된 차량에 한해 5시간 무료 주차가 가능합니다</p>
+                        <p>- 등록위치 : 공연장 1층 로비 내 주차정산소</br>
                             <a href="https://www.dreamtheatre.co.kr/Dream/DreamTheatre/Location" target="_blank">[주차 안내 바로가기]
                         </a></p>
                     </div>
