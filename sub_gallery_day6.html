@@ -96,9 +96,13 @@
             background: #e9f2e8;
             color: #2a5732;
             }
+        .dropdown-list li a {
+            text-decoration: none;
+            color: #333;
+        }
         .dropdown:hover .dropdown-list {
             display: block;
-            }
+        }
         .login-box {
             position: absolute;
             top: 30px;
@@ -115,7 +119,16 @@
             color: #000000;
             text-decoration: underline;
         }
-
+        .mypage-link {
+            color: #333333;
+            text-decoration: none;
+            transition: color 0.15s;
+            display: none;
+        }
+        .mypage-link:hover {
+            color: #000000;
+            text-decoration: underline;
+        }
         .content-section {
             display: flex;
             width: 100%;
@@ -289,47 +302,46 @@
                 <div class="dropdown">
                 <button>페스티벌</button>
                 <ul class="dropdown-list">
-                    <li>서울 재즈 페스티벌</li>
-                    <li>뷰티풀 민트 라이프</li>
+                    <li><a href="sub_szp.html">서울 재즈 페스티벌</a></li>
+                    <li>뷰리풀 민트 라이프</li>
                 </ul>
                 </div>
-
                 <div class="dropdown">
                 <button>전시</button>
                 <ul class="dropdown-list">
-                    <li>마르카마르카</li>
+                    <li><a href="sub_mrc.html">마르카마르카</a></li>
                 </ul>
                 </div>
-
                 <div class="dropdown">
                 <button>뮤지컬/연극</button>
                 <ul class="dropdown-list">
-                    <li>지킬앤하이드</li>
+                    <li><a href="sub_musical.html">지킬 앤 하이드</a></li>
                 </ul>
                 </div>
-
                 <div class="dropdown">
                 <button>지역 행사</button>
                 <ul class="dropdown-list">
-                    <li>보령머드축제</li>
+                    <li><a href="sub_mud.html">보령 머드 축제</a></li>
                 </ul>
                 </div>
-
                 <div class="dropdown">
                 <button>콘서트</button>
                 <ul class="dropdown-list">
-                    <li>데이식스 콘서트</li>
+                    <li><a href="sub_day6.html">데이식스 콘서트</a></li>
                 </ul>
                 </div>
             </div>
             <div class="login-box">
-                <a href="login.html" class="login-link">로그인</a> | <a href="assign.html" class="login-link">회원가입</a></div>
+                <a href="login.html" class="login-link" id="loginLink">로그인</a>
+                <span class="login-link" id="loginSeparator">|</span>
+                <a href="assign.html" class="login-link" id="signupLink">회원가입</a>
+                <a href="mypage.html" class="mypage-link" id="mypageLink">마이페이지</a>
             </div>
         </div>
 
         <div class="content-section">
             <aside class="side-menu">
-                <div class="menu-title">서울 재즈 페스티벌</div>
+                <div class="menu-title">데이식스 콘서트</div>
                 <ul class="menu-list">
                     <li><a href="sub_map_day6.html">오시는 길</a></li>
                     <li><a href=# id="current">지난 사진 보기</a></li>
@@ -348,27 +360,27 @@
                     <div class="gallery-grid">
                         <div class="gallery-item">
                             <img src="img_day6/gall/day6_1.jpg" alt="사진1">
-                            <p>2025-05-09</p>
+                            <p>2024-12-20</p>
                         </div>
                         <div class="gallery-item">
                             <img src="img_day6/gall/day6_2.jpg" alt="사진2">
-                            <p>2025-05-10</p>
+                            <p>2024-09-22</p>
                         </div>
                         <div class="gallery-item">
                             <img src="img_day6/gall/day6_3.jpg" alt="사진3">
-                            <p>2025-05-11</p>
+                            <p>2024-09-22</p>
                         </div>
                         <div class="gallery-item">
                             <img src="img_day6/gall/day6_4.jpg" alt="사진4">
-                            <p>2025-05-16</p>
+                            <p>2024-09-20</p>
                         </div>
                         <div class="gallery-item">
                             <img src="img_day6/gall/day6_5.jpg" alt="사진5">
-                            <p>2025-05-17</p>
+                            <p>2024-04-11</p>
                         </div>
                         <div class="gallery-item">
                             <img src="img_day6/gall/day6_6.jpg" alt="사진6">
-                            <p>2025-05-18</p>
+                            <p>2025-12-21</p>
                         </div>
                     </div>
                 </section>
@@ -378,15 +390,16 @@
     </div>
 
     <script>
-        const titleId = '서울 재즈 페스티벌'; // 고유 ID 역할
+        const titleId = '데이식스 콘서트'
         const bookmarkEl = document.getElementById('bookmark');
-    
-        let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-    
+        const userId = localStorage.getItem('currentUser');
+        const favKey = `favorites_${userId}`;
+        let favorites = JSON.parse(localStorage.getItem(favKey)) || [];
+
         if (favorites.includes(titleId)) {
             bookmarkEl.classList.add('fav');
         }
-    
+
         bookmarkEl.addEventListener('click', () => {
             const index = favorites.indexOf(titleId);
             if (index === -1) {
@@ -396,8 +409,27 @@
                 favorites.splice(index, 1);
                 bookmarkEl.classList.remove('fav');
             }
-            localStorage.setItem('favorites', JSON.stringify(favorites));
+            localStorage.setItem(favKey, JSON.stringify(favorites));
         });
+        function checkLoginStatus() {
+            const currentUser = localStorage.getItem('currentUser');
+            const loginLink = document.getElementById('loginLink');
+            const signupLink = document.getElementById('signupLink');
+            const loginSeparator = document.getElementById('loginSeparator');
+            const mypageLink = document.getElementById('mypageLink');
+            if (currentUser) {
+                loginLink.style.display = 'none';
+                signupLink.style.display = 'none';
+                loginSeparator.style.display = 'none';
+                mypageLink.style.display = 'inline';
+            } else {
+                loginLink.style.display = 'inline';
+                signupLink.style.display = 'inline';
+                loginSeparator.style.display = 'inline';
+                mypageLink.style.display = 'none';
+            }
+        }
+        window.addEventListener('load', checkLoginStatus);
     </script>
     
 </body>

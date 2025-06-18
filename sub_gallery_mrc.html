@@ -96,9 +96,13 @@
             background: #e9f2e8;
             color: #2a5732;
             }
+        .dropdown-list li a {
+            text-decoration: none;
+            color: #333;
+        }
         .dropdown:hover .dropdown-list {
             display: block;
-            }
+        }
         .login-box {
             position: absolute;
             top: 30px;
@@ -115,7 +119,16 @@
             color: #000000;
             text-decoration: underline;
         }
-
+        .mypage-link {
+            color: #333333;
+            text-decoration: none;
+            transition: color 0.15s;
+            display: none;
+        }
+        .mypage-link:hover {
+            color: #000000;
+            text-decoration: underline;
+        }
         .content-section {
             display: flex;
             width: 100%;
@@ -133,20 +146,24 @@
             border-radius: 15px;
             border: 1px solid #94c99f;
         }
+
         .menu-title {
             font-size: 1.4rem;
             font-weight: 900;
             margin-bottom: 20px;
             color: #1e3e2e;
         }
+
         .menu-list {
             list-style: none;
             padding: 0;
             margin: 0;
         }
+
         .menu-list li {
             margin-bottom: 30px;
         }
+
         .menu-list li a {
             text-decoration: none;
             color: #ffffff;
@@ -155,6 +172,7 @@
             transition: color 0.2s;
             padding: 10px;
         }
+
         .menu-list li a:hover {
             color: #2a5732;
         }
@@ -289,41 +307,40 @@
                 <div class="dropdown">
                 <button>페스티벌</button>
                 <ul class="dropdown-list">
-                    <li>서울 재즈 페스티벌</li>
-                    <li>뷰티풀 민트 라이프</li>
+                    <li><a href="sub_szp.html">서울 재즈 페스티벌</a></li>
+                    <li>뷰리풀 민트 라이프</li>
                 </ul>
                 </div>
-
                 <div class="dropdown">
                 <button>전시</button>
                 <ul class="dropdown-list">
-                    <li>마르카마르카</li>
+                    <li><a href="sub_mrc.html">마르카마르카</a></li>
                 </ul>
                 </div>
-
                 <div class="dropdown">
                 <button>뮤지컬/연극</button>
                 <ul class="dropdown-list">
-                    <li>지킬앤하이드</li>
+                    <li><a href="sub_musical.html">지킬 앤 하이드</a></li>
                 </ul>
                 </div>
-
                 <div class="dropdown">
                 <button>지역 행사</button>
                 <ul class="dropdown-list">
-                    <li>보령머드축제</li>
+                    <li><a href="sub_mud.html">보령 머드 축제</a></li>
                 </ul>
                 </div>
-
                 <div class="dropdown">
                 <button>콘서트</button>
                 <ul class="dropdown-list">
-                    <li>데이식스 콘서트</li>
+                    <li><a href="sub_day6.html">데이식스 콘서트</a></li>
                 </ul>
                 </div>
             </div>
             <div class="login-box">
-                <a href="login.html" class="login-link">로그인</a> | <a href="assign.html" class="login-link">회원가입</a></div>
+                <a href="login.html" class="login-link" id="loginLink">로그인</a>
+                <span class="login-link" id="loginSeparator">|</span>
+                <a href="assign.html" class="login-link" id="signupLink">회원가입</a>
+                <a href="mypage.html" class="mypage-link" id="mypageLink">마이페이지</a>
             </div>
         </div>
 
@@ -347,7 +364,7 @@
                     <h3>📸 지난 사진 보기</h3>
                     <div class="gallery-grid">
                         <div class="gallery-item">
-                            <img src="img_szp/gall/szp_1.png" alt="사진1">
+                            <img src="img_mrc/gall/mrc_1.jpg" alt="사진1">
                             <p>2025-05-03</p>
                         </div>
                         <div class="gallery-item">
@@ -378,15 +395,16 @@
     </div>
 
     <script>
-        const titleId = '서울 재즈 페스티벌'; // 고유 ID 역할
+        const titleId = '마르카마르카'; // 고유 ID 역할
         const bookmarkEl = document.getElementById('bookmark');
-    
-        let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-    
+        const userId = localStorage.getItem('currentUser');
+        const favKey = `favorites_${userId}`;
+        let favorites = JSON.parse(localStorage.getItem(favKey)) || [];
+
         if (favorites.includes(titleId)) {
             bookmarkEl.classList.add('fav');
         }
-    
+
         bookmarkEl.addEventListener('click', () => {
             const index = favorites.indexOf(titleId);
             if (index === -1) {
@@ -396,8 +414,27 @@
                 favorites.splice(index, 1);
                 bookmarkEl.classList.remove('fav');
             }
-            localStorage.setItem('favorites', JSON.stringify(favorites));
+            localStorage.setItem(favKey, JSON.stringify(favorites));
         });
+        function checkLoginStatus() {
+            const currentUser = localStorage.getItem('currentUser');
+            const loginLink = document.getElementById('loginLink');
+            const signupLink = document.getElementById('signupLink');
+            const loginSeparator = document.getElementById('loginSeparator');
+            const mypageLink = document.getElementById('mypageLink');
+            if (currentUser) {
+                loginLink.style.display = 'none';
+                signupLink.style.display = 'none';
+                loginSeparator.style.display = 'none';
+                mypageLink.style.display = 'inline';
+            } else {
+                loginLink.style.display = 'inline';
+                signupLink.style.display = 'inline';
+                loginSeparator.style.display = 'inline';
+                mypageLink.style.display = 'none';
+            }
+        }
+        window.addEventListener('load', checkLoginStatus);
     </script>
     
 </body>
