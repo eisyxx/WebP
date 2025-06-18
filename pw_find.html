@@ -84,11 +84,31 @@
         <div class="find-pw-box">
             <div class="find-pw-title">비밀번호 찾기</div>
             <form autocomplete="off">
-                <input type="text" class="form-control find-pw-input" placeholder="닉네임을 입력하세요" required>
+                <input type="text" class="form-control find-pw-input" placeholder="이름을 입력하세요" required>
                 <input type="text" class="form-control find-pw-input" placeholder="아이디를 입력하세요" required>
                 <button type="submit" class="find-pw-btn">완료</button>
             </form>
         </div>
     </div>
+    <script>
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const inputs = document.querySelectorAll('.find-pw-input');
+            const name = inputs[0].value;
+            const userId = inputs[1].value;
+
+            // localStorage에서 회원정보 가져오기
+            const savedName = localStorage.getItem('user_name');
+            const savedId = localStorage.getItem('user_id');
+            const savedPw = localStorage.getItem('user_pw');
+
+            if (name === savedName && userId === savedId) {
+                alert('회원님의 비밀번호는 ' + savedPw + ' 입니다.');
+                window.location.href = 'login.html';
+            } else {
+                alert('일치하는 회원 정보가 없습니다.');
+            }
+        });
+    </script>
 </body>
 </html>
