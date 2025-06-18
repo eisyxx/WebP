@@ -43,6 +43,21 @@
     .btn-custom:hover {
       background-color: #ffc766;
     }
+
+    .like-btn {
+      border-radius: 8px;
+      padding: 8px 16px;
+      font-size: 1rem;
+      width: 140px;     /* 고정된 크기 */
+      margin-top: 16px; /* 내용과 간격 */
+    }
+
+    .like-btn.liked {
+      background-color: #ff5e5e;
+      color: white;
+      border-color: #ff5e5e;
+    }
+
     #comment-input {
       background-color: rgba(255, 211, 132, 0.5);
       border: 1px solid #FFD384;
@@ -101,6 +116,11 @@
       </div>
 
       <p class="mb-0" id="post-body">본문 내용</p>
+      <div class="mt-4">
+        <button id="like-btn" class="btn btn-outline-danger like-btn">
+          ❤️ 좋아요  <span id="like-count">0</span>
+        </button>
+      </div>
     </div>
 
     <!-- 댓글 영역 -->
@@ -153,6 +173,21 @@
       const count = document.getElementById("comment-count");
       count.textContent = parseInt(count.textContent) + 1;
     }
+
+    let liked = false;
+    let likeCount = 0;
+
+    document.getElementById("like-btn").addEventListener("click", function () {
+      if (liked) {
+        alert("이미 공감한 글입니다");
+        return;
+      }
+
+      liked = true;
+      likeCount++;
+      this.classList.add("liked");
+      document.getElementById("like-count").textContent = likeCount;
+    });
   </script>
 </body>
 </html>
