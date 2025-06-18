@@ -98,13 +98,16 @@
         }
         .dropdown:hover .dropdown-list {
             display: block;
-            }
+        }
         .login-box {
             position: absolute;
             top: 30px;
             right: 38px;
             color: #333333;
             font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
         .login-link {
             color: #333333;
@@ -112,6 +115,16 @@
             transition: color 0.15s;
         }
         .login-link:hover {
+            color: #000000;
+            text-decoration: underline;
+        }
+        .mypage-link {
+            color: #333333;
+            text-decoration: none;
+            transition: color 0.15s;
+            display: none;
+        }
+        .mypage-link:hover {
             color: #000000;
             text-decoration: underline;
         }
@@ -139,6 +152,12 @@
             background-size: cover;
             background-position: center;
             cursor: pointer;
+            border: 3px solid transparent;
+            transition: border 0.3s, box-shadow 0.3s;
+        }
+        .card:hover {
+            border: 3px solid #95e4ff;
+            box-shadow: 0 0 16px 4px #ffd38480;
         }
         .card1 { background: url('img_szp/szp.png') center/cover no-repeat}
         .card2 { background: url('img_musical/musical.png') center/cover no-repeat}
@@ -161,7 +180,7 @@
             opacity: 0; /* 처음엔 안 보이게 */
             transition: opacity 0.3s ease;
             text-align: center;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.7);
+            text-shadow: 0 2px 10px rgba(255, 255, 255, 0.7);
             padding: 20px;
             box-sizing: border-box;
         }
@@ -214,30 +233,34 @@
             <div class="dropdown">
             <button>전시</button>
             <ul class="dropdown-list">
-                <li>마르카마르카</li>
+                <li><a href="sub_mrc.html">마르카마르카</a></li>
             </ul>
             </div>
             <div class="dropdown">
             <button>뮤지컬/연극</button>
             <ul class="dropdown-list">
-                <li>지킬앤하이드</li>
+                <li><a href="sub_musical.html">지킬 앤 하이드</a></li>
             </ul>
             </div>
             <div class="dropdown">
             <button>지역 행사</button>
             <ul class="dropdown-list">
-                <li>보령머드축제</li>
+                <li><a href="sub_mud.html">보령 머드 축제</a></li>
             </ul>
             </div>
             <div class="dropdown">
             <button>콘서트</button>
             <ul class="dropdown-list">
-                <li>데이식스 콘서트</li>
+                <li><a href="sub_day6.html">데이식스 콘서트</a></li>
             </ul>
             </div>
         </div>
         <div class="login-box">
-            <a href="login.html" class="login-link">로그인</a> | <a href="assign.html" class="login-link">회원가입</a></div>
+            <a href="login.html" class="login-link" id="loginLink">로그인</a>
+            <span class="login-link" id="loginSeparator">|</span>
+            <a href="assign.html" class="login-link" id="signupLink">회원가입</a>
+            <a href="mypage.html" class="mypage-link" id="mypageLink">마이페이지</a>
+        </div>
         </div>
         </div>
         <div class="content">
@@ -246,7 +269,7 @@
             <div class="card-title">서울 재즈 페스티벌</div>
             </a>
             <a href="sub_musical.html" class="card card2">
-            <div class="card-title">지킬앤하이드</div>
+            <div class="card-title">지킬 앤 하이드</div>
             </a>
             <a href="sub_day6.html" class="card card3">
             <div class="card-title">데이식스 콘서트</div>
@@ -266,5 +289,43 @@
         이용약관 / 개인정보처리방침
         </div>
     </div>
+    <script>
+        // 쿠키 가져오기 함수
+        function getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+        }
+
+        // 로그인 상태 확인
+        function checkLoginStatus() {
+            const currentUser = localStorage.getItem('currentUser');
+            const loginCookie = getCookie('loginTry');
+            const loginLink = document.getElementById('loginLink');
+            const signupLink = document.getElementById('signupLink');
+            const loginSeparator = document.getElementById('loginSeparator');
+            const mypageLink = document.getElementById('mypageLink');
+
+            // localStorage와 쿠키 모두 확인
+            if (currentUser && loginCookie) {
+                loginLink.style.display = 'none';
+                signupLink.style.display = 'none';
+                loginSeparator.style.display = 'none';
+                mypageLink.style.display = 'inline';
+            } else {
+                // 로그인 상태가 아니면 localStorage와 쿠키 모두 삭제
+                localStorage.removeItem('currentUser');
+                document.cookie = 'loginTry=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+                
+                loginLink.style.display = 'inline';
+                signupLink.style.display = 'inline';
+                loginSeparator.style.display = 'inline';
+                mypageLink.style.display = 'none';
+            }
+        }
+
+        // 페이지 로드 시 로그인 상태 확인
+        window.addEventListener('load', checkLoginStatus);
+    </script>
 </body>
 </html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>2025년 뭐하고 놀지?</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background: #fff9f3;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+        body {
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+        .wishlist-bg {
+            max-width: 1200px;
+            margin: 40px auto 0 auto;
+            padding: 40px 0 40px 0;
+            background: #fff9f3;
+            min-height: 90vh;
+        }
+        .wishlist-title {
+            text-align: center;
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 40px;
+            color: #333333;
+        }
+        .wishlist-title .heart {
+            color: #e53935;
+            font-size: 2.0rem;
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+        .wishlist-box {
+            background: #fff;
+            border: 1.5px solid #ccc;
+            border-radius: 0;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 32px 0 32px 0;
+            box-sizing: border-box;
+            height: 650px;
+            overflow-y: auto;
+        }
+        .wishlist-list {
+            list-style: none;
+            padding: 0 40px;
+            margin: 0;
+        }
+        .wishlist-item {
+            border-bottom: 1px solid black;
+            padding: 20px 0;
+            margin: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .wishlist-item-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+        .wishlist-item .item-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .wishlist-item .item-heart {
+            color: #ffb12a;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+        .wishlist-item .item-heart:hover {
+            color: #ffb12a;
+        }
+        .wishlist-item .item-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+        }
+        .wishlist-item .item-btn {
+            background: #ffd384;
+            color: #333;
+            border: none;
+            border-radius: 5px;
+            padding: 6px 18px;
+            font-size: 0.98rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .wishlist-item .item-btn:hover {
+            background: #ffb12a;
+        }
+        @media (max-width: 700px) {
+            .wishlist-box { max-width: 98vw; }
+            .wishlist-list { padding: 0 8px; }
+            .wishlist-title { font-size: 2rem; }
+        }
+        .wishlist-box::-webkit-scrollbar {
+            width: 8px;
+        }
+        .wishlist-box::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        .wishlist-box::-webkit-scrollbar-thumb {
+            background: #a2d5ab;
+            border-radius: 4px;
+        }
+        .wishlist-box::-webkit-scrollbar-thumb:hover {
+            background: #8bc34a;
+        }
+    </style>
+</head>
+<body>
+    <div class="wishlist-bg">
+        <div class="wishlist-title">
+            <span class="heart">❤️</span>내가 찜한 항목
+        </div>
+        <div class="wishlist-box">
+            <ul class="wishlist-list">
+                <!-- JS로 동적 생성 -->
+            </ul>
+        </div>
+    </div>
+    <script>
+    // 로그인한 사용자 아이디로 찜 목록 불러오기
+    const userId = localStorage.getItem('currentUser');
+    const favKey = `favorites_${userId}`;
+    const favorites = JSON.parse(localStorage.getItem(favKey)) || [];
+
+    // 항목별 상세페이지 링크(필요시 수정)
+    const items = {
+        "서울 재즈 페스티벌": "sub_day6.html",
+        "데이식스 콘서트": "sub_day6.html",
+        "지킬앤하이드": "#",
+        "보령 머드 축제": "#"
+    };
+
+    const listEl = document.querySelector('.wishlist-list');
+    listEl.innerHTML = '';
+
+    if (!userId) {
+        listEl.innerHTML = '<li style="text-align:center; color:#888; padding:40px 0; font-size:1.1rem;">로그인 후 이용 가능합니다.</li>';
+    } else if (favorites.length === 0) {
+        listEl.innerHTML = '<li style="text-align:center; color:#888; padding:40px 0; font-size:1.1rem;">찜한 항목이 없습니다.</li>';
+    } else {
+        favorites.forEach(title => {
+            listEl.innerHTML += `
+                <li class="wishlist-item">
+                    <span class="item-left"><span class="item-heart">❤️</span><span class="item-title">${title}</span></span>
+                    <a class="item-btn" href="${items[title] || '#'}">예매하기</a>
+                </li>
+            `;
+        });
+    }
+
+    // 위시리스트 항목 추가 함수
+    function addWishlistItem(item) {
+        const wishlistList = document.querySelector('.wishlist-list');
+        const li = document.createElement('li');
+        li.className = 'wishlist-item';
+        li.innerHTML = `
+            <div class="wishlist-item-content">
+                <div class="wishlist-item-info">
+                    <h3>${item.name}</h3>
+                    <p>${item.description}</p>
+                </div>
+                <div class="wishlist-item-actions">
+                    <button class="wishlist-item-delete" onclick="removeWishlistItem(this)">삭제</button>
+                </div>
+            </div>
+        `;
+        // 새로운 항목을 맨 위에 추가
+        wishlistList.insertBefore(li, wishlistList.firstChild);
+    }
+    </script>
+</body>
+</html>

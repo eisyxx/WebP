@@ -106,11 +106,11 @@
             </div>
             <div class="form-group-custom">
                 <span class="required_label">*</span>
-                <input type="tel" class="form-control-custom" placeholder="휴대폰 번호를 입력하세요" required>
+                <input type="tel" class="form-control-custom" placeholder="휴대폰 번호를 입력하세요 (010-0000-0000)" required>
             </div>
             <div class="form-group-custom">
                 <span class="required_label">*</span>
-                <input type="text" class="form-control-custom" placeholder="생년월일을 입력하세요 (YYYY-MM-DD형식)" required>
+                <input type="text" class="form-control-custom" placeholder="생년월일을 입력하세요 (YYYY-MM-DD)" required>
             </div>
             <div class="form-group-custom">
                 <span class="required_label">*</span>
@@ -142,14 +142,47 @@
 
         document.getElementById('signupForm').addEventListener('submit', function (e) {
             e.preventDefault();
-            const nickname = document.getElementById('nickname').value;
             const inputs = document.querySelectorAll('.form-control-custom');
-            const userId = inputs[4].value;     // 아이디 입력칸
-            const userPw = inputs[5].value;     // 비밀번호 입력칸
+            const name = inputs[0].value;
+            const nickname = inputs[1].value;
+            const phone = inputs[2].value;
+            const birth = inputs[3].value;
+            const userId = inputs[4].value;
+            const userPw = inputs[5].value;
+            const userPwCheck = inputs[6].value;
 
-            // 로컬스토리지에 아이디와 비밀번호 저장
-            localStorage.setItem('temp_id', userId);
-            localStorage.setItem('temp_pw', userPw);
+            // 휴대폰 번호 검사
+            if (!/^010-\d{4}-\d{4}$/.test(phone)) {
+                alert('휴대폰 번호는 010-0000-0000 형식으로 입력해주세요.');
+                inputs[2].focus();
+                return;
+            }
+            // 생년월일 검사
+            if (!/^\d{4}-\d{2}-\d{2}$/.test(birth)) {
+                alert('생년월일은 YYYY-MM-DD 형식으로 입력해주세요.');
+                inputs[3].focus();
+                return;
+            }
+            // 아이디 중복 검사
+            if (localStorage.getItem('user_id') === userId) {
+                alert('이미 존재하는 아이디입니다.');
+                inputs[4].focus();
+                return;
+            }
+            // 비밀번호 일치 검사
+            if (userPw !== userPwCheck) {
+                alert('비밀번호가 일치하지 않습니다.');
+                inputs[6].focus();
+                return;
+            }
+
+            // 통과 시 저장
+            localStorage.setItem('user_name', name);
+            localStorage.setItem('user_nickname', nickname);
+            localStorage.setItem('user_phone', phone);
+            localStorage.setItem('user_birth', birth);
+            localStorage.setItem('user_id', userId);
+            localStorage.setItem('user_pw', userPw);
 
             alert(`${nickname}님 등록되었습니다`);
             window.location.href = 'login.html';

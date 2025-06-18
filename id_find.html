@@ -83,11 +83,46 @@
             <div class="find-id-title">아이디 찾기</div>
             <form autocomplete="off">
                 <input type="text" class="form-control find-id-input" placeholder="이름을 입력하세요" required>
-                <input type="tel" class="form-control find-id-input" placeholder="휴대폰 번호를 입력하세요" required>
-                <input type="text" class="form-control find-id-input" placeholder="생년월일을 입력하세요 (YYYY-MM-DD형식)" required>
+                <input type="tel" class="form-control find-id-input" placeholder="휴대폰 번호를 입력하세요 (010-0000-0000)" required>
+                <input type="text" class="form-control find-id-input" placeholder="생년월일을 입력하세요 (YYYY-MM-DD)" required>
                 <button type="submit" class="find-id-btn">완료</button>
             </form>
         </div>
     </div>
+    <script>
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const inputs = document.querySelectorAll('.find-id-input');
+            const name = inputs[0].value;
+            const phone = inputs[1].value;
+            const birth = inputs[2].value;
+
+            // 휴대폰 번호 검사
+            if (!/^010-\d{4}-\d{4}$/.test(phone)) {
+                alert('휴대폰 번호는 010-0000-0000 형식으로 입력해주세요.');
+                inputs[1].focus();
+                return;
+            }
+            // 생년월일 검사
+            if (!/^\d{4}-\d{2}-\d{2}$/.test(birth)) {
+                alert('생년월일은 YYYY-MM-DD 형식으로 입력해주세요.');
+                inputs[2].focus();
+                return;
+            }
+
+            // localStorage에서 회원정보 가져오기
+            const savedName = localStorage.getItem('user_name');
+            const savedPhone = localStorage.getItem('user_phone');
+            const savedBirth = localStorage.getItem('user_birth');
+            const savedId = localStorage.getItem('user_id');
+
+            if (name === savedName && phone === savedPhone && birth === savedBirth) {
+                alert('회원님의 아이디는 ' + savedId + ' 입니다.');
+                window.location.href = 'login.html';
+            } else {
+                alert('일치하는 회원 정보가 없습니다.');
+            }
+        });
+    </script>
 </body>
 </html>

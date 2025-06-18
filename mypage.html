@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>마이페이지</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: #fff9f3;
+        }
+        .mypage-bg {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fff9f3;
+        }
+        .mypage-box {
+            background: #ffffff;
+            border-radius: 30px;
+            box-shadow: 0 0 0 1px #0000004d;
+            padding: 100px 40px 60px 40px;
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+            margin: 50px auto;
+            position: relative;
+        }
+        .mypage-title {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 60px;
+            color: #333333;
+            letter-spacing: -1px;
+        }
+        .edit-link {
+            position: absolute;
+            top: 190px;
+            right: 48px;
+            font-size: 0.98em;
+            color: #333;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .edit-link:hover {
+            text-decoration: underline;
+        }
+        .edit-link:hover .edit-pencil {
+            text-decoration: none !important;
+        }
+        .info-list {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            margin-bottom: 38px;
+        }
+        .info-item {
+            background: #ffd38480;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1em;
+            padding: 15px 20px;
+            color: #333;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            font-weight: 500;
+        }
+        .info-label {
+            color: #ed9a00;
+            font-weight: bold;
+            margin-right: 18px;
+            min-width: 90px;
+            display: inline-block;
+        }
+        .info-value {
+            color: #333;
+            font-weight: 400;
+        }
+        .mypage-bottom {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 18px;
+            gap: 12px;
+        }
+        .mypage-btn {
+            width: 60%;
+            margin-bottom: 8px;
+        }
+        .wishlist-link {
+            color: #333;
+            font-size: 1.0em;
+            font-weight: 500;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .wishlist-link:hover {
+            text-decoration: underline;
+        }
+        .wishlist-link:hover .wishlist-heart {
+            text-decoration: none !important;
+        }
+        .mypage-btn {
+            width: 30%;
+            background: #ffd384;
+            color: #333;
+            border: none;
+            border-radius: 20px;
+            font-size: 1.2em;
+            font-weight: bold;
+            padding: 20px;
+            margin-top: 0;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .mypage-btn:hover {
+            background: #ffd384;
+        }
+        @media (max-width: 500px) {
+            .mypage-box {
+                padding: 32px 8vw 28px 8vw;
+                max-width: 98vw;
+            }
+            .mypage-title {
+                font-size: 1.4em;
+            }
+        }
+        .edit-pencil {
+            text-decoration: none !important;
+            display: inline-block;
+        }
+        .wishlist-heart {
+            text-decoration: none !important;
+            display: inline-block;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <div class="mypage-bg">
+        <div class="mypage-box">
+            <div class="mypage-title">마이페이지</div>
+            <a href="#" class="edit-link"><span class="edit-pencil" style="font-size:1.1em; margin-right:4px; color:#333; text-decoration:none;">✏️</span>회원 정보 수정</a>
+            <div class="info-list">
+                <div class="info-item"><span class="info-label">이름</span> <span class="info-value" id="mypageName"></span></div>
+                <div class="info-item"><span class="info-label">닉네임</span> <span class="info-value" id="mypageNickname"></span></div>
+                <div class="info-item"><span class="info-label">휴대폰 번호</span> <span class="info-value" id="mypagePhone"></span></div>
+                <div class="info-item"><span class="info-label">생년월일</span> <span class="info-value" id="mypageBirth"></span></div>
+                <div class="info-item"><span class="info-label">아이디</span> <span class="info-value" id="mypageId"></span></div>
+                <div class="info-item"><span class="info-label">비밀번호</span> <span class="info-value" id="mypagePw">**********</span></div>
+                <div class="info-item"><span class="info-label">비밀번호 확인</span> <span class="info-value" id="mypagePwCheck">**********</span></div>
+                <div class="wishlist-link-box" style="display:flex; justify-content:flex-end; align-items:center; margin-top:0px;">
+                  <span class="wishlist-heart" style="color:#e53935;font-size:1.2em; text-decoration:none; display:inline-block; vertical-align:middle; margin-right:2px;">❤️</span>
+                  <a href="wishlist.html" class="wishlist-link">내가 찜한 항목</a>
+                </div>
+            </div>
+            <div class="mypage-bottom">
+                <button class="mypage-btn">완료</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        // localStorage에서 회원정보 불러와서 표시
+        function loadUserInfo() {
+            document.getElementById('mypageName').textContent = localStorage.getItem('user_name') || '';
+            document.getElementById('mypageNickname').textContent = localStorage.getItem('user_nickname') || '';
+            document.getElementById('mypagePhone').textContent = localStorage.getItem('user_phone') || '';
+            document.getElementById('mypageBirth').textContent = localStorage.getItem('user_birth') || '';
+            document.getElementById('mypageId').textContent = localStorage.getItem('user_id') || '';
+        }
+        loadUserInfo();
+
+        // 수정 모드로 전환
+        document.querySelector('.edit-link').addEventListener('click', function(e) {
+            e.preventDefault();
+            // 완료 버튼 숨기기
+            document.querySelector('.mypage-btn').style.display = 'none';
+            // 각 항목을 input으로 변경
+            document.getElementById('mypageName').innerHTML = `<input type='text' id='editName' value='${localStorage.getItem('user_name')||''}' style='border:none; background:transparent; box-shadow:none; padding:0; font-size:inherit; color:inherit; width:70%; display:inline-block;'>`;
+            document.getElementById('mypageNickname').innerHTML = `<input type='text' id='editNickname' value='${localStorage.getItem('user_nickname')||''}' style='border:none; background:transparent; box-shadow:none; padding:0; font-size:inherit; color:inherit; width:70%; display:inline-block;'>`;
+            document.getElementById('mypagePhone').innerHTML = `<input type='text' id='editPhone' value='${localStorage.getItem('user_phone')||''}' style='border:none; background:transparent; box-shadow:none; padding:0; font-size:inherit; color:inherit; width:70%; display:inline-block;'>`;
+            document.getElementById('mypageBirth').innerHTML = `<input type='text' id='editBirth' value='${localStorage.getItem('user_birth')||''}' style='border:none; background:transparent; box-shadow:none; padding:0; font-size:inherit; color:inherit; width:70%; display:inline-block;'>`;
+            document.getElementById('mypageId').innerHTML = `<input type='text' id='editId' value='${localStorage.getItem('user_id')||''}' style='border:none; background:transparent; box-shadow:none; padding:0; font-size:inherit; color:inherit; width:70%; display:inline-block;'>`;
+            document.getElementById('mypagePw').innerHTML = `<input type='text' id='editPw' value='${localStorage.getItem('user_pw')||''}' style='border:none; background:transparent; box-shadow:none; padding:0; font-size:inherit; color:inherit; width:70%; display:inline-block;'>`;
+            document.getElementById('mypagePwCheck').innerHTML = `<input type='text' id='editPwCheck' value='${localStorage.getItem('user_pw')||''}' style='border:none; background:transparent; box-shadow:none; padding:0; font-size:inherit; color:inherit; width:70%; display:inline-block;'>`;
+
+            // 저장 버튼 추가
+            if (!document.getElementById('saveBtn')) {
+                const saveBtn = document.createElement('button');
+                saveBtn.textContent = '저장';
+                saveBtn.className = 'mypage-btn';
+                saveBtn.id = 'saveBtn';
+                saveBtn.style.marginTop = '12px';
+                document.querySelector('.mypage-bottom').appendChild(saveBtn);
+
+                saveBtn.addEventListener('click', function() {
+                    // 값 가져오기
+                    const name = document.getElementById('editName').value;
+                    const nickname = document.getElementById('editNickname').value;
+                    const phone = document.getElementById('editPhone').value;
+                    const birth = document.getElementById('editBirth').value;
+                    const userId = document.getElementById('editId').value;
+                    const userPw = document.getElementById('editPw').value;
+                    const userPwCheck = document.getElementById('editPwCheck').value;
+
+                    // 휴대폰 번호 검사
+                    if (!/^010-\d{4}-\d{4}$/.test(phone)) {
+                        alert('휴대폰 번호는 010-0000-0000 형식으로 입력해주세요.');
+                        document.getElementById('editPhone').focus();
+                        return;
+                    }
+                    // 생년월일 검사
+                    if (!/^\d{4}-\d{2}-\d{2}$/.test(birth)) {
+                        alert('생년월일은 YYYY-MM-DD 형식으로 입력해주세요.');
+                        document.getElementById('editBirth').focus();
+                        return;
+                    }
+                    // 아이디 중복 검사 (현재 내 아이디가 아닌 경우만 체크)
+                    if (localStorage.getItem('user_id') !== userId && localStorage.getItem('user_id') && userId) {
+                        alert('이미 존재하는 아이디입니다.');
+                        document.getElementById('editId').focus();
+                        return;
+                    }
+                    // 비밀번호 일치 검사
+                    if (userPw !== userPwCheck) {
+                        alert('비밀번호가 일치하지 않습니다.');
+                        document.getElementById('editPwCheck').focus();
+                        return;
+                    }
+
+                    // 값 저장
+                    localStorage.setItem('user_name', name);
+                    localStorage.setItem('user_nickname', nickname);
+                    localStorage.setItem('user_phone', phone);
+                    localStorage.setItem('user_birth', birth);
+                    localStorage.setItem('user_id', userId);
+                    localStorage.setItem('user_pw', userPw);
+                    // input을 다시 텍스트로 변경
+                    loadUserInfo();
+                    alert('수정이 완료되었습니다.');
+                    saveBtn.remove();
+                    // 완료 버튼 다시 보이기
+                    document.querySelector('.mypage-btn').style.display = '';
+                });
+            }
+        });
+
+        // 완료 버튼 클릭 시 index.html로 이동
+        document.querySelector('.mypage-btn').addEventListener('click', function() {
+            window.location.href = 'index.html';
+        });
+    </script>
+</body>
+</html> 
