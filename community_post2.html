@@ -43,6 +43,22 @@
     .btn-custom:hover {
       background-color: #ffc766;
     }
+
+    .like-btn {
+      border-radius: 8px;
+      padding: 8px 16px;
+      font-size: 1rem;
+      width: 140px;     /* 고정된 크기 */
+      margin-top: 16px; /* 내용과 간격 */
+    }
+
+    .like-btn.liked {
+      background-color: #ff5e5e;
+      color: white;
+      border-color: #ff5e5e;
+    }
+
+
     #comment-input {
       background-color: rgba(255, 211, 132, 0.5);
       border: 1px solid #FFD384;
@@ -100,8 +116,15 @@
         <strong>스타벅스</strong>
       </div>
 
-      <p class="mb-0" id="post-body">홍광호 배우님 노래 잘하신다는 소문은 들었는데 진짜 미친거 아니야?!?!</br>
-        나 정말 잠깐 다른 세계에 있다가 온 거 같아... 어제 보고 온건데 아직도 못 헤어 나오는 중 ㅜ</p>
+      <p class="mb-0" id="post-body">
+        홍광호 배우님 노래 잘하신다는 소문은 들었는데 진짜 미친거 아니야?!?!</br>
+        나 정말 잠깐 다른 세계에 있다가 온 거 같아... 어제 보고 온건데 아직도 못 헤어 나오는 중 ㅜ
+      </p>
+      <div class="mt-4">
+        <button id="like-btn" class="btn btn-outline-danger like-btn">
+          ❤️ 좋아요  <span id="like-count">0</span>
+        </button>
+      </div>
     </div>
 
     <!-- 댓글 영역 -->
@@ -138,6 +161,39 @@
       const count = document.getElementById("comment-count");
       count.textContent = parseInt(count.textContent) + 1;
     }
+
+    const likeBtn = document.getElementById("like-btn");
+    const likeCountSpan = document.getElementById("like-count");
+
+    const postId = new URLSearchParams(location.search).get("id") || "default";  
+    const LIKE_KEY = `liked_post_${postId}`;
+    const COUNT_KEY = `liked_post_count_${postId}`;
+
+
+    // 초기 상태 로드
+    let liked = localStorage.getItem(LIKE_KEY) === "true";
+    let likeCount = parseInt(localStorage.getItem(COUNT_KEY)) || 0;
+
+    // UI 반영
+    if (liked) likeBtn.classList.add("liked");
+    likeCountSpan.textContent = likeCount;
+
+    // 클릭 이벤트
+    likeBtn.addEventListener("click", function () {
+      if (liked) {
+        alert("이미 공감한 글입니다");
+        return;
+      }
+
+      liked = true;
+      likeCount++;
+      likeBtn.classList.add("liked");
+      likeCountSpan.textContent = likeCount;
+
+      // 저장
+      localStorage.setItem(LIKE_KEY, "true");
+      localStorage.setItem(COUNT_KEY, likeCount);
+    });
   </script>
 </body>
 </html>
