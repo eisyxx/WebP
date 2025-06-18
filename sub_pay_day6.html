@@ -84,6 +84,7 @@
             margin: 0 0 0 0;
             padding: 10px 0;
             z-index: 100;
+            font-family: 'Noto Sans KR', sans-serif;
             list-style-type: none;
             }
         .dropdown-list li {
@@ -98,9 +99,13 @@
             background: #e9f2e8;
             color: #2a5732;
             }
+        .dropdown-list li a {
+            text-decoration: none;
+            color: #333;
+        }
         .dropdown:hover .dropdown-list {
             display: block;
-            }
+        }
         .login-box {
             position: absolute;
             top: 30px;
@@ -117,11 +122,21 @@
             color: #000000;
             text-decoration: underline;
         }
+        .mypage-link {
+            color: #333333;
+            text-decoration: none;
+            transition: color 0.15s;
+            display: none;
+        }
+        .mypage-link:hover {
+            color: #000000;
+            text-decoration: underline;
+        }
 
         .content-section {
             display: flex;
             width: 100%;
-            min-height: calc(100vh - 200px); /* 헤더/푸터 높이 감안 */
+            min-height: calc(100vh - 200px);
             box-sizing: border-box;
             padding-top: 20px;
         }
@@ -197,8 +212,8 @@
             width: 1260px;
             max-width: 100%;
             height: 700px;
-            padding: 0 50px 0 50px;
-            margin: 50px auto;
+            padding: 0 50px 0 20px;
+            margin: 30px auto;
         }
 
         .booking-summary {
@@ -274,43 +289,42 @@
             <div class="header-title" id="special">2025년<br>뭐하고 놀지?</div>
             <div class="nav-bar">
                 <div class="dropdown">
-                <button>페스티벌</button>
-                <ul class="dropdown-list">
-                    <li>서울 재즈 페스티벌</li>
-                    <li>뷰티풀 민트 라이프</li>
-                </ul>
+                    <button>페스티벌</button>
+                    <ul class="dropdown-list">
+                        <li><a href="sub_szp.html">서울 재즈 페스티벌</a></li>
+                        <li>뷰리풀 민트 라이프</li>
+                    </ul>
                 </div>
-
                 <div class="dropdown">
-                <button>전시</button>
-                <ul class="dropdown-list">
-                    <li>마르카마르카</li>
-                </ul>
+                    <button>전시</button>
+                    <ul class="dropdown-list">
+                        <li><a href="sub_mrc.html">마르카마르카</a></li>
+                    </ul>
                 </div>
-
                 <div class="dropdown">
-                <button>뮤지컬/연극</button>
-                <ul class="dropdown-list">
-                    <li>지킬앤하이드</li>
-                </ul>
+                    <button>뮤지컬/연극</button>
+                    <ul class="dropdown-list">
+                        <li><a href="sub_musical.html">지킬 앤 하이드</a></li>
+                    </ul>
                 </div>
-
                 <div class="dropdown">
-                <button>지역 행사</button>
-                <ul class="dropdown-list">
-                    <li>보령머드축제</li>
-                </ul>
+                    <button>지역 행사</button>
+                    <ul class="dropdown-list">
+                        <li><a href="sub_mud.html">보령 머드 축제</a></li>
+                    </ul>
                 </div>
-
                 <div class="dropdown">
-                <button>콘서트</button>
-                <ul class="dropdown-list">
-                    <li>데이식스 콘서트</li>
-                </ul>
+                    <button>콘서트</button>
+                    <ul class="dropdown-list">
+                        <li><a href="sub_day6.html">데이식스 콘서트</a></li>
+                    </ul>
                 </div>
             </div>
             <div class="login-box">
-                <a href="login.html" class="login-link">로그인</a> | <a href="assign.html" class="login-link">회원가입</a></div>
+                <a href="login.html" class="login-link" id="loginLink">로그인</a>
+                <span class="login-link" id="loginSeparator">|</span>
+                <a href="assign.html" class="login-link" id="signupLink">회원가입</a>
+                <a href="mypage.html" class="mypage-link" id="mypageLink">마이페이지</a>
             </div>
         </div>
 
@@ -329,6 +343,49 @@
             </section>
         </div>
     </div>
+    <script>
+        function checkLoginStatus() {
+            const currentUser = localStorage.getItem('currentUser');
+            const loginLink = document.getElementById('loginLink');
+            const signupLink = document.getElementById('signupLink');
+            const loginSeparator = document.getElementById('loginSeparator');
+            const mypageLink = document.getElementById('mypageLink');
+            if (currentUser) {
+                loginLink.style.display = 'none';
+                signupLink.style.display = 'none';
+                loginSeparator.style.display = 'none';
+                mypageLink.style.display = 'inline';
+            } else {
+                loginLink.style.display = 'inline';
+                signupLink.style.display = 'inline';
+                loginSeparator.style.display = 'inline';
+                mypageLink.style.display = 'none';
+            }
+        }
+        window.addEventListener('load', checkLoginStatus);
 
+        const form = document.querySelector("form");
+        form.addEventListener("submit", function (event) {
+            // 모든 입력 필드 수집
+            const inputs = form.querySelectorAll("input[type='text'], input[type='email']");
+            for (let input of inputs) {
+                if (input.value.trim() === "") {
+                    alert("정보를 입력해주십시오");
+                    event.preventDefault(); // 제출 막기
+                    return;
+                }
+            }
+    
+            // 체크박스 확인
+            const checkboxes = form.querySelectorAll("input[type='checkbox']");
+            for (let checkbox of checkboxes) {
+                if (!checkbox.checked) {
+                    alert("약관에 동의해주셔야 합니다");
+                    event.preventDefault(); // 제출 막기
+                    return;
+                }
+            }
+        });
+    </script>
 </body>
 </html>
