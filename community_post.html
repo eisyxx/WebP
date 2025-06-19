@@ -162,12 +162,12 @@
       const timestamp = now.toLocaleString();
 
       // 현재 로그인한 사용자 닉네임 가져오기
-      const currentUser = localStorage.getItem("currentUser") || "익명";
+      const nickname = localStorage.getItem("user_nickname") || "익명";
 
       const commentBox = document.createElement("div");
       commentBox.className = "comment-box";
       commentBox.innerHTML = `
-        <strong>${currentUser}</strong>
+        <strong>${nickname}</strong>
         <div>${commentText}</div>
         <div class="comment-date">${timestamp}</div>
       `;
