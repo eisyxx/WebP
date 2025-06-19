@@ -128,6 +128,17 @@
             color: #000000;
             text-decoration: underline;
         }
+        .logout-link {
+            color: #333333;
+            text-decoration: none;
+            transition: color 0.15s;
+            display: none;
+            cursor: pointer;
+        }
+        .logout-link:hover {
+            color: #000000;
+            text-decoration: underline;
+        }
         .content {
             width: 100vw;
             display: flex;
@@ -309,6 +320,8 @@
             <span class="login-link" id="loginSeparator">|</span>
             <a href="assign.html" class="login-link" id="signupLink">회원가입</a>
             <a href="mypage.html" class="mypage-link" id="mypageLink">마이페이지</a>
+            <span class="login-link" id="logoutSeparator" style="display: none;">|</span>
+            <span class="logout-link" id="logoutLink">로그아웃</span>
         </div>
         </div>
         </div>
@@ -355,6 +368,8 @@
             const signupLink = document.getElementById('signupLink');
             const loginSeparator = document.getElementById('loginSeparator');
             const mypageLink = document.getElementById('mypageLink');
+            const logoutLink = document.getElementById('logoutLink');
+            const logoutSeparator = document.getElementById('logoutSeparator');
 
             // localStorage와 쿠키 모두 확인
             if (currentUser && loginCookie) {
@@ -362,6 +377,8 @@
                 signupLink.style.display = 'none';
                 loginSeparator.style.display = 'none';
                 mypageLink.style.display = 'inline';
+                logoutSeparator.style.display = 'inline';
+                logoutLink.style.display = 'inline';
             } else {
                 // 로그인 상태가 아니면 localStorage와 쿠키 모두 삭제
                 localStorage.removeItem('currentUser');
@@ -371,11 +388,28 @@
                 signupLink.style.display = 'inline';
                 loginSeparator.style.display = 'inline';
                 mypageLink.style.display = 'none';
+                logoutSeparator.style.display = 'none';
+                logoutLink.style.display = 'none';
             }
         }
+
+        // 로그아웃 함수
+        function logout() {
+            localStorage.removeItem('currentUser');
+            document.cookie = 'loginTry=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+            checkLoginStatus();
+            alert('로그아웃되었습니다.');
+        }
+
+        // 로그아웃 버튼에 이벤트 리스너 추가
+        document.addEventListener('DOMContentLoaded', function() {
+            const logoutLink = document.getElementById('logoutLink');
+            logoutLink.addEventListener('click', logout);
+        });
 
         // 페이지 로드 시 로그인 상태 확인
         window.addEventListener('load', checkLoginStatus);
     </script>
 </body>
 </html>
+

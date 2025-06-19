@@ -80,30 +80,11 @@
         }
         .mypage-bottom {
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
             align-items: center;
             justify-content: center;
             margin-top: 18px;
             gap: 12px;
-        }
-        .mypage-btn {
-            width: 60%;
-            margin-bottom: 8px;
-        }
-        .wishlist-link {
-            color: #333;
-            font-size: 1.0em;
-            font-weight: 500;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-        .wishlist-link:hover {
-            text-decoration: underline;
-        }
-        .wishlist-link:hover .wishlist-heart {
-            text-decoration: none !important;
         }
         .mypage-btn {
             width: 30%;
@@ -121,6 +102,38 @@
         }
         .mypage-btn:hover {
             background: #ffd384;
+        }
+        .delete-btn {
+            width: 30%;
+            background: #ff6060;
+            color: #333;
+            border: none;
+            border-radius: 20px;
+            font-size: 1.2em;
+            font-weight: bold;
+            padding: 20px;
+            margin-top: 0;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .delete-btn:hover {
+            background: #ff6060;
+        }
+        .wishlist-link {
+            color: #333;
+            font-size: 1.0em;
+            font-weight: 500;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .wishlist-link:hover {
+            text-decoration: underline;
+        }
+        .wishlist-link:hover .wishlist-heart {
+            text-decoration: none !important;
         }
         @media (max-width: 500px) {
             .mypage-box {
@@ -162,6 +175,7 @@
             </div>
             <div class="mypage-bottom">
                 <button class="mypage-btn">완료</button>
+                <button class="delete-btn">회원탈퇴</button>
             </div>
         </div>
     </div>
@@ -254,6 +268,24 @@
         // 완료 버튼 클릭 시 index.html로 이동
         document.querySelector('.mypage-btn').addEventListener('click', function() {
             window.location.href = 'index.html';
+        });
+
+        // 회원탈퇴 버튼 클릭 시 회원탈퇴 확인 팝업 표시
+        document.querySelector('.delete-btn').addEventListener('click', function() {
+            if (confirm('정말로 회원탈퇴하시겠습니까? 탈퇴 후에는 복구할 수 없습니다.')) {
+                // 회원탈퇴 로직 구현
+                localStorage.removeItem('user_name');
+                localStorage.removeItem('user_nickname');
+                localStorage.removeItem('user_phone');
+                localStorage.removeItem('user_birth');
+                localStorage.removeItem('user_id');
+                localStorage.removeItem('user_pw');
+                localStorage.removeItem('currentUser');
+                document.cookie = 'loginTry=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+                loadUserInfo();
+                alert('회원탈퇴되었습니다.');
+                window.location.href = 'index.html';
+            }
         });
     </script>
 </body>
