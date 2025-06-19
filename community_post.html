@@ -112,7 +112,7 @@
                 </defs>
             </svg>
         </a>
-        <strong>익명</strong>
+        <strong id="post-writer">익명</strong>
       </div>
 
       <p class="mb-0" id="post-body">본문 내용</p>
@@ -150,6 +150,7 @@
       document.getElementById('post-title').textContent = post.title;
       document.getElementById('post-body').textContent = post.post;
       document.getElementById('board-title').textContent = post.category;
+      document.getElementById('post-writer').textContent = post.writerNickname || '익명';
     }
 
     function addComment() {

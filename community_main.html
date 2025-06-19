@@ -153,7 +153,7 @@
                 card.setAttribute('data-category', post.category);
                 card.innerHTML = `
                     <div class="card-header">
-                        익명<span class="badge badge-custom ms-2 float-end">${post.head}</span>
+                        ${post.writer || "익명"}<span class="badge badge-custom ms-2 float-end">${post.head}</span>
                     </div>
                     <a href="community_post.html?id=${post.id}" class="card-body">
                         <h4 class="card-title">${post.title}</h4>
