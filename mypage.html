@@ -193,8 +193,9 @@
         // 수정 모드로 전환
         document.querySelector('.edit-link').addEventListener('click', function(e) {
             e.preventDefault();
-            // 완료 버튼 숨기기
+            // 완료 버튼과 회원탈퇴 버튼 숨기기
             document.querySelector('.mypage-btn').style.display = 'none';
+            document.querySelector('.delete-btn').style.display = 'none';
             // 각 항목을 input으로 변경
             document.getElementById('mypageName').innerHTML = `<input type='text' id='editName' value='${localStorage.getItem('user_name')||''}' style='border:none; background:transparent; box-shadow:none; padding:0; font-size:inherit; color:inherit; width:70%; display:inline-block;'>`;
             document.getElementById('mypageNickname').innerHTML = `<input type='text' id='editNickname' value='${localStorage.getItem('user_nickname')||''}' style='border:none; background:transparent; box-shadow:none; padding:0; font-size:inherit; color:inherit; width:70%; display:inline-block;'>`;
@@ -259,8 +260,9 @@
                     loadUserInfo();
                     alert('수정이 완료되었습니다.');
                     saveBtn.remove();
-                    // 완료 버튼 다시 보이기
+                    // 완료 버튼과 회원탈퇴 버튼 다시 보이기
                     document.querySelector('.mypage-btn').style.display = '';
+                    document.querySelector('.delete-btn').style.display = '';
                 });
             }
         });
