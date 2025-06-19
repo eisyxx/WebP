@@ -100,6 +100,23 @@
         .wishlist-item .item-btn:hover {
             background: #ffb12a;
         }
+        .wishlist-item .cancel-btn {
+            background: #ff6b6b;
+            color: #333;
+            border: none;
+            border-radius: 5px;
+            padding: 6px 18px;
+            font-size: 0.98rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s;
+            text-decoration: none;
+            display: inline-block;
+            margin-right: 8px;
+        }
+        .wishlist-item .cancel-btn:hover {
+            background: #ff5252;
+        }
         @media (max-width: 700px) {
             .wishlist-box { max-width: 98vw; }
             .wishlist-list { padding: 0 8px; }
@@ -137,12 +154,26 @@
     const favKey = `favorites_${userId}`;
     const favorites = JSON.parse(localStorage.getItem(favKey)) || [];
 
+    // 기존에 잘못 저장된 "보령 머드 축재"를 "보령 머드 축제"로 수정
+    const correctedFavorites = favorites.map(item => {
+        if (item === '보령 머드 축재') {
+            return '보령 머드 축제';
+        }
+        return item;
+    });
+    
+    // 수정된 데이터가 있으면 localStorage에 저장
+    if (JSON.stringify(favorites) !== JSON.stringify(correctedFavorites)) {
+        localStorage.setItem(favKey, JSON.stringify(correctedFavorites));
+    }
+
     // 항목별 상세페이지 링크(필요시 수정)
     const items = {
-        "서울 재즈 페스티벌": "sub_day6.html",
-        "데이식스 콘서트": "sub_day6.html",
-        "지킬앤하이드": "#",
-        "보령 머드 축제": "#"
+        "서울 재즈 페스티벌": "sub_pay_szp.html",
+        "데이식스 콘서트": "sub_pay_day6.html",
+        "지킬 앤 하이드": "sub_pay_musical.html",
+        "보령 머드 축제": "sub_pay_mud.html",
+        "마르카마르카":"sub_pay_mrc.html"
     };
 
     const listEl = document.querySelector('.wishlist-list');
@@ -150,14 +181,17 @@
 
     if (!userId) {
         listEl.innerHTML = '<li style="text-align:center; color:#888; padding:40px 0; font-size:1.1rem;">로그인 후 이용 가능합니다.</li>';
-    } else if (favorites.length === 0) {
-        listEl.innerHTML = '<li style="text-align:center; color:#888; padding:40px 0; font-size:1.1rem;">찜한 항목이 없습니다.</li>';
+    } else if (correctedFavorites.length === 0) {
+        listEl.innerHTML = '<li style="text-align:center; color:#888; padding:40px 0; font-size:1.1rem;">찜한 항목이 없습니다.<br><br><a href="index.html" style="color:#a2d5ab; text-decoration:none; font-weight:bold;">위시리스트 추가하러 가기</a></li>';
     } else {
-        favorites.forEach(title => {
+        correctedFavorites.forEach(title => {
             listEl.innerHTML += `
                 <li class="wishlist-item">
                     <span class="item-left"><span class="item-heart">❤️</span><span class="item-title">${title}</span></span>
-                    <a class="item-btn" href="${items[title] || '#'}">예매하기</a>
+                    <div class="item-actions">
+                        <a class="item-btn" href="${items[title] || '#'}">예매하기</a>
+                        <button class="cancel-btn" onclick="removeWishlistItem(this)">삭제</button>
+                    </div>
                 </li>
             `;
         });
@@ -181,6 +215,34 @@
         `;
         // 새로운 항목을 맨 위에 추가
         wishlistList.insertBefore(li, wishlistList.firstChild);
+    }
+
+    // 위시리스트에서 항목 제거하는 함수
+    function removeWishlistItem(button) {
+        const listItem = button.closest('.wishlist-item');
+        const titleElement = listItem.querySelector('.item-title');
+        const title = titleElement.textContent;
+        
+        // localStorage에서 제거
+        const userId = localStorage.getItem('currentUser');
+        const favKey = `favorites_${userId}`;
+        let favorites = JSON.parse(localStorage.getItem(favKey)) || [];
+        
+        const index = favorites.indexOf(title);
+        if (index > -1) {
+            favorites.splice(index, 1);
+            localStorage.setItem(favKey, JSON.stringify(favorites));
+        }
+        
+        // DOM에서 제거
+        listItem.remove();
+        
+        // 위시리스트가 비어있으면 메시지 표시
+        const remainingItems = document.querySelectorAll('.wishlist-item');
+        if (remainingItems.length === 0) {
+            const listEl = document.querySelector('.wishlist-list');
+            listEl.innerHTML = '<li style="text-align:center; color:#888; padding:40px 0; font-size:1.1rem;">찜한 항목이 없습니다.<br><br><a href="index.html" style="color:#a2d5ab; text-decoration:none; font-weight:bold;">위시리스트 추가하러 가기</a></li>';
+        }
     }
     </script>
 </body>
